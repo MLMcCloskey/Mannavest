@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* ******************************************************************************************* */
+
+.listName {
+  background-color: blue;
+  width: 200px;
+}
+
+.card {
+  background-color: bisque;
+  width: 200px
+}
