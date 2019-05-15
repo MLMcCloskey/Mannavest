@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addList } from '../actions';
+
 
 class ActionButton extends React.Component {
     state = {
@@ -6,7 +9,8 @@ class ActionButton extends React.Component {
         title: "",
         description: "",
         cost: 0,
-        image: ""
+        image: "",
+        category: ""
     }
 
     // methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -17,12 +21,25 @@ class ActionButton extends React.Component {
 
     closeForm = e => {
         e.preventDefault();
-        this.setState({ formOpen: false })
+        this.setState({ formOpen: false });
+        this.handleAddList();
     }
 
     handleInputChange = e => {
         let field = e.target.id;
         this.setState({ [field]: e.target.value })
+    }
+
+    handleAddList = (e) => {
+        e.preventDefault();
+        const { dispatch } = this.props;
+        const { category } = this.state;
+        console.log("button pressed");
+
+            if (category) {
+                dispatch(addList(category))
+            }
+            else return;
     }
 
     renderAddButton = () => {
@@ -45,11 +62,11 @@ class ActionButton extends React.Component {
     renderForm = () => {
         const { list } = this.props;
         
-        return (
+        if (!list) return (
             <form className='newCardForm'>
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
-                    <input type="text" className="form-control" id="title" aria-describedby="emailHelp" placeholder="What do you need?" onChange={this.handleInputChange} />
+                    <input type="text" className="form-control" id="title" placeholder="What do you need?" onChange={this.handleInputChange} />
                     {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
                 </div>
                 <div className="form-group">
@@ -60,7 +77,21 @@ class ActionButton extends React.Component {
                     <label htmlFor="cost">Cost</label>
                     <input type="number" className="form-control" id="cost" placeholder="How much will it cost?" onChange={this.handleInputChange} />
                 </div>
+                <div className="form-group">
+                    <label htmlFor="image">Image</label>
+                    <input type="text" className="form-control" id="image" placeholder="Choose an image for the card" onChange={this.handleInputChange} />
+                </div>
+                <button type="submit" className="btn btn-secondary" onClick={this.formClose}>Cancel</button>
                 <button type="submit" className="btn btn-primary" onClick={this.formClose}>Submit</button>
+            </form>
+        )
+        else return (
+            <form className='newListForm'>
+                <div className='form-group'>
+                    <label htmlFor='category'>Category</label>
+                    <input type='text' className='form-control' id='category' onChange={this.handleInputChange} />
+                </div>
+                <button type="submit" className="btn btn-primary" onMouseDown={this.handleAddList} onClick={this.closeForm}>Submit</button>
             </form>
         )
     }
@@ -71,4 +102,4 @@ class ActionButton extends React.Component {
     }
 }
 
-export default ActionButton;
+export default connect () (ActionButton);

@@ -15,11 +15,11 @@ class App extends Component {
         </header>
         { lists.map(list => 
           <List key={list.id} 
-                title={list.title} 
+                category={list.category} 
                 cards={list.cards}>
           </List>
         )}
-        <ActionButton />
+        <ActionButton list />
       </div>
     );
   }
