@@ -33,3 +33,12 @@ code {
   height: 150px;
   width: 180px
 }
+
+.newCardForm {
+  border: solid 2px black;
+  padding: 15px;
+}
+.newCardForm input {
+  margin: 0 auto;
+  width: 70%
+}

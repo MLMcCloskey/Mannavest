@@ -3,20 +3,27 @@ import React, { Component } from 'react';
 class ActionButton extends React.Component {
     state = {
         formOpen: false,
-        text: ""
+        title: "",
+        description: "",
+        cost: 0,
+        image: ""
     }
 
     // methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    openForm = () => {
-        this.setState({ formOpen: true })
+    openForm = (e) => {
+        e.preventDefault();
+        this.setState({ formOpen: true });
+        // this.renderForm();
     }
 
     closeForm = e => {
+        e.preventDefault();
         this.setState({ formOpen: false })
     }
 
     handleInputChange = e => {
-        this.setState({ text: e.target.value })
+        // console.log(e.target.id);
+        this.setState({ title: e.target.value })
     }
 
     renderAddButton = () => {
@@ -29,7 +36,7 @@ class ActionButton extends React.Component {
                 <button type="button" 
                         onClick={this.openForm}
                         className="btn btn-secondary btn-lg btn-block "
-                        data-toggle="modal" data-target="#exampleModal"
+                        // data-toggle="modal" data-target="#exampleModal"
                         >
                     {buttonText}
                 </button>
@@ -41,46 +48,24 @@ class ActionButton extends React.Component {
         const { list } = this.props;
         
         return (
-            <div className="modal" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div className="modal-body">
-                        ...
-                        </div>
-                        <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
+            <form className='newCardForm'>
+                <div className="form-group">
+                    <label htmlFor="title">Title</label>
+                    <input type="text" className="form-control" id="title" aria-describedby="emailHelp" placeholder="What do you need?" onChange={this.handleInputChange} />
+                    {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
                 </div>
-            </div>
-
-//             <div className="modal" tabIndex="-1" role="dialog">
-//   <div className="modal-dialog" role="document">
-//     <div className="modal-content">
-//       <div className="modal-header">
-//         <h5 className="modal-title">Modal title</h5>
-//         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-//           <span aria-hidden="true">&times;</span>
-//         </button>
-//       </div>
-//       <div className="modal-body">
-//         <p>Modal body text goes here.</p>
-//       </div>
-//       <div className="modal-footer">
-//         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-//         <button type="button" className="btn btn-primary">Save changes</button>
-//       </div>
-//     </div>
-//   </div>
-// </div>
+                <div className="form-group">
+                    <label htmlFor="description">Description</label>
+                    <input type="text" className="form-control" id="description" placeholder="Add a description" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="cost">Cost</label>
+                    <input type="number" className="form-control" id="cost" placeholder="How much will it cost?" />
+                </div>
+                <button type="submit" className="btn btn-primary" onClick={this.formClose}>Submit</button>
+            </form>
         )
+        // document.getElementById('#exampleModal').modal('show');
     }
 
     // Render ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
