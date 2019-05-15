@@ -1,4 +1,5 @@
 import React from 'react';
+// import ActionButton from './CreateNew';
 
 const ListItem = (props) => {
     return (
@@ -10,9 +11,10 @@ const ListItem = (props) => {
                 <a href="#" className="btn btn-primary">Contribute</a>
             </div>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item">$0 out of $1000</li>
+                    <li className="list-group-item">$0 out of ${props.cost}</li>
                 </ul>
         </div>
+        // <ActionButton />
     )
 }
 

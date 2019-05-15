@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from './components/List';
 // import ListItem from './components/ListItem';
+import ActionButton from './components/CreateNew';
 import { connect } from 'react-redux';
 import './App.css';
 
@@ -10,13 +11,15 @@ class App extends Component {
     return (
       <div className="App">
         <header className="header">
-          <h1> Hello World </h1>
+          <h1> MANNAVEST </h1>
         </header>
         { lists.map(list => 
-        <List title={list.title} cards={list.cards}>
-          
-        </List>
+          <List key={list.id} 
+                title={list.title} 
+                cards={list.cards}>
+          </List>
         )}
+        <ActionButton />
       </div>
     );
   }

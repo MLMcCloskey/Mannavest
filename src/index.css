@@ -15,11 +15,21 @@ code {
 /* ******************************************************************************************* */
 
 .listName {
-  background-color: blue;
-  width: 200px;
+  background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/ricepaper.png');
+  width: 80vw;
+  margin: 40px auto;
 }
 
 .card {
   background-color: bisque;
-  width: 200px
+  width: 230px;
+  height: 420px;
+  margin: 20px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.card img {
+  height: 150px;
+  width: 180px
 }
