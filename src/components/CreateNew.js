@@ -13,7 +13,6 @@ class ActionButton extends React.Component {
     openForm = (e) => {
         e.preventDefault();
         this.setState({ formOpen: true });
-        // this.renderForm();
     }
 
     closeForm = e => {
@@ -22,8 +21,8 @@ class ActionButton extends React.Component {
     }
 
     handleInputChange = e => {
-        // console.log(e.target.id);
-        this.setState({ title: e.target.value })
+        let field = e.target.id;
+        this.setState({ [field]: e.target.value })
     }
 
     renderAddButton = () => {
@@ -36,7 +35,6 @@ class ActionButton extends React.Component {
                 <button type="button" 
                         onClick={this.openForm}
                         className="btn btn-secondary btn-lg btn-block "
-                        // data-toggle="modal" data-target="#exampleModal"
                         >
                     {buttonText}
                 </button>
@@ -56,16 +54,15 @@ class ActionButton extends React.Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
-                    <input type="text" className="form-control" id="description" placeholder="Add a description" />
+                    <input type="text" className="form-control" id="description" placeholder="Add a description" onChange={this.handleInputChange} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="cost">Cost</label>
-                    <input type="number" className="form-control" id="cost" placeholder="How much will it cost?" />
+                    <input type="number" className="form-control" id="cost" placeholder="How much will it cost?" onChange={this.handleInputChange} />
                 </div>
                 <button type="submit" className="btn btn-primary" onClick={this.formClose}>Submit</button>
             </form>
         )
-        // document.getElementById('#exampleModal').modal('show');
     }
 
     // Render ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
