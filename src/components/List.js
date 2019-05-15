@@ -5,7 +5,13 @@ const List = (props) => {
     return (
         <div className="listName">
             <h3>{props.title}</h3>
-            <ListItem text="Build the app."/>
+                { props.cards.map(card =>                
+                    <ListItem 
+                        title={card.title}
+                        text={card.text}
+                        image={card.image}
+                    />
+                )}
         </div>
     )
 }
