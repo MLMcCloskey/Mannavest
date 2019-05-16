@@ -10,12 +10,12 @@ const List = (props) => {
                     <ListItem 
                         key={card.id}
                         title={card.title}
-                        text={card.text}
+                        description={card.description}
                         image={card.image}
                         cost={card.cost}
                     />
                 )}
-            <ActionButton />
+            <ActionButton listID={props.listID}/>
         </div>
     )
 }

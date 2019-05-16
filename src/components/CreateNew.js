@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addList } from '../actions';
+import { addList, addCard } from '../actions';
 
 
 class ActionButton extends React.Component {
@@ -22,7 +22,7 @@ class ActionButton extends React.Component {
     closeForm = e => {
         e.preventDefault();
         this.setState({ formOpen: false });
-        this.handleAddList();
+        // this.handleAddList();
     }
 
     handleInputChange = e => {
@@ -40,7 +40,22 @@ class ActionButton extends React.Component {
                 dispatch(addList(category))
             }
             else return;
+        this.closeForm(e);
     }
+
+    handleAddCard = (e) => {
+        e.preventDefault();
+        const { dispatch, listID } = this.props;
+        const { title, description, cost, image } = this.state;
+        console.log("button pressed");
+
+            if (title, description, cost, image) {
+                dispatch(addCard(listID, title, description, cost, image))
+            }
+            else return;
+        this.closeForm(e);
+    }
+    
 
     renderAddButton = () => {
         const { list } = this.props;
@@ -81,8 +96,8 @@ class ActionButton extends React.Component {
                     <label htmlFor="image">Image</label>
                     <input type="text" className="form-control" id="image" placeholder="Choose an image for the card" onChange={this.handleInputChange} />
                 </div>
-                <button type="submit" className="btn btn-secondary" onClick={this.formClose}>Cancel</button>
-                <button type="submit" className="btn btn-primary" onClick={this.formClose}>Submit</button>
+                <button type="submit" className="btn btn-secondary" onClick={this.closeForm}>Cancel</button>
+                <button type="submit" className="btn btn-primary" onMouseDown={this.handleAddCard}>Submit</button>
             </form>
         )
         else return (
@@ -91,7 +106,7 @@ class ActionButton extends React.Component {
                     <label htmlFor='category'>Category</label>
                     <input type='text' className='form-control' id='category' onChange={this.handleInputChange} />
                 </div>
-                <button type="submit" className="btn btn-primary" onMouseDown={this.handleAddList} onClick={this.closeForm}>Submit</button>
+                <button type="submit" className="btn btn-primary" onMouseDown={this.handleAddList}>Submit</button>
             </form>
         )
     }

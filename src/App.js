@@ -15,6 +15,7 @@ class App extends Component {
         </header>
         { lists.map(list => 
           <List key={list.id} 
+                listID={list.id}
                 category={list.category} 
                 cards={list.cards}>
           </List>
