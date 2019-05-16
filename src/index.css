@@ -20,6 +20,11 @@ code {
   margin: 40px auto;
 }
 
+.listHeader {
+  padding-top: 10px;
+  /* text-decoration: underline; */
+}
+
 .card {
   background-color: bisque;
   width: 230px;
@@ -34,11 +39,16 @@ code {
   width: 180px
 }
 
-.newCardForm {
+.newCardForm, .newListForm {
   border: solid 2px black;
   padding: 15px;
 }
-.newCardForm input {
+.newCardForm input, .newListForm input {
   margin: 0 auto;
   width: 70%
+}
+
+.form-buttons {
+  margin-left: 10px;
+  margin-right: 10px;
 }

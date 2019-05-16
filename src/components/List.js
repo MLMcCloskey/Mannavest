@@ -5,7 +5,8 @@ import ActionButton from './CreateNew';
 const List = (props) => {
     return (
         <div className="listName">
-            <h3>{props.category}</h3>
+            <h2 className='listHeader'>{props.category}</h2>
+            <hr></hr>
                 { props.cards.map(card =>                
                     <ListItem 
                         key={card.id}
