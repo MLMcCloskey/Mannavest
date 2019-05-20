@@ -39,6 +39,18 @@ code {
   width: 180px
 }
 
+.progressBar {
+  /* background: linear-gradient(right, black 50%, white 50%); */
+  /* width: 50%; */
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #11BC0B;
+  z-index: 5;
+  opacity: 0.6;
+}
+
 .newCardForm, .newListForm {
   border: solid 2px black;
   padding: 15px;

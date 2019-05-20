@@ -14,6 +14,7 @@ const List = (props) => {
                         description={card.description}
                         image={card.image}
                         cost={card.cost}
+                        progress={0}
                     />
                 )}
             <ActionButton listID={props.listID}/>
