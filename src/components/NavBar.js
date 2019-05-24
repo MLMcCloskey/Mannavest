@@ -31,7 +31,7 @@ class Navbar extends React.Component {
                 <a className="nav-link my-page"  href="#">My Page</a>
               {/* </li> */}
             <form className="form-inline my-2 my-lg-0">
-              <input className="form-control mr-sm-2" type="search" placeholder="Search for companies..." aria-label="Search" />
+              <input className="form-control mr-sm-2 searchBar" type="search" placeholder="Search for companies..." aria-label="Search" />
                 <button className="btn btn-warning btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </div>

@@ -14,11 +14,19 @@ code {
 
 /* ******************************************************************************************* */
 
+/* NavBar styling */
 .my-page {
   color: white;
   text-decoration: none;
+  border-right: 1px solid white;
 }
 
+.searchBar {
+  /* border-left: 1px solid white; */
+  margin-left: 20px
+}
+
+/* Card styling */
 .listName {
   background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/ricepaper.png');
   width: 80vw;
@@ -45,8 +53,6 @@ code {
 }
 
 .progressBar {
-  /* background: linear-gradient(right, black 50%, white 50%); */
-  /* width: 50%; */
   position: absolute;
   left: 0;
   top: 0;
