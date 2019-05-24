@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const cardController = require("../../controllers/cardController");
+const cardController = require("../../controller/cardController");
 
 
 router.route("/upload")
