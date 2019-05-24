@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Navbar from './components/NavBar'
 import List from './components/List';
 // import ListItem from './components/ListItem';
 import ActionButton from './components/CreateNew';
@@ -13,6 +14,9 @@ class App extends Component {
         <header className="header">
           <h1> MANNAVEST </h1>
         </header>
+
+        <Navbar />
+        
         { lists.map(list => 
           <List key={list.id} 
                 listID={list.id}

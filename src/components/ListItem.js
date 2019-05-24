@@ -3,23 +3,26 @@ import React, { Component } from 'react';
 
 class ListItem extends React.Component {
     constructor(...props) {
-        super (...props);
-        this.state = { 
+        super(...props);
+        this.state = {
             progress: this.props.progress,
             percentage: 0
         }
     }
+
     handleContribution = (e) => {
         e.preventDefault();
-        this.setState({ progress: this.state.progress +50 });
-        
+        if (this.state.progress < this.props.cost) {
+            this.setState({ progress: this.state.progress + 50 });
+            console.log(this.state.progress);
+        }
     }
     handleProgress = (e) => {
         e.preventDefault();
-        let progressBar = document.getElementById(this.props.title+'ProgressBar');
+        const progressBar = document.getElementById(this.props.title + 'ProgressBar');
         const percentage = (this.state.progress / this.props.cost) * 100;
-        // progressBar.style.backgroundColor = 'green';
         progressBar.style.width = percentage + '%';
+        console.log(this.props.cost)
         return console.log(percentage);
     }
     render() {
@@ -31,17 +34,17 @@ class ListItem extends React.Component {
                     <p className="card-text">{this.props.description}</p>
                     <a href="#" className="btn btn-primary" onMouseDown={this.handleContribution} onClick={this.handleProgress}>Contribute</a>
                 </div>
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item">
-                            ${this.state.progress} out of ${this.props.cost}
-                            <div id={this.props.title+"ProgressBar"} className='progressBar' />
-                        </li>
-                    </ul>
+                <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                        ${this.state.progress} out of ${this.props.cost}
+                        <div id={this.props.title + "ProgressBar"} className='progressBar' />
+                    </li>
+                </ul>
             </div>
             // <ActionButton />
         )
     }
-    
+
 }
 
 export default ListItem;
