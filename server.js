@@ -54,7 +54,7 @@ app.use(cardRoutes);
 
 // connect to database (local or production)
 // mongoose.connect("mongodb://bruder44:AgentRooney10@ds261486.mlab.com:61486/mannavest", {useNewUrlParser: true}, err => {
-    mongoose.connect("mongodb://localhost:27017/mannavest", {useNewUrlParser: true}, err => {
+    mongoose.connect("mongodb://bruder44:AgentRooney10@ds261486.mlab.com:61486/mannavest", {useNewUrlParser: true}, err => {
     if (err) console.error(err);
     else console.log(`Database Connected!!!`);
 });
