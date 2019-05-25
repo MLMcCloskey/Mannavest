@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
-// import Navbar from './components/NavBar';
+import Navbar from './components/NavBar'
 import List from './components/List';
 // import ListItem from './components/ListItem';
 import ActionButton from './components/CreateNew';
-import Registry from './components/Registry';
 import { connect } from 'react-redux';
 import './App.css';
 
@@ -13,16 +11,20 @@ class App extends Component {
     const { lists } = this.props;
     return (
       <div className="App">
-        <Header />
-        <Registry lists />
-        {/* { lists.map(list => 
+        <header className="header">
+          <h1> MANNAVEST </h1>
+        </header>
+
+        <Navbar />
+        
+        { lists.map(list => 
           <List key={list.id} 
                 listID={list.id}
                 category={list.category} 
                 cards={list.cards}>
           </List>
         )}
-        <ActionButton list /> */}
+        <ActionButton list />
       </div>
     );
   }
