@@ -17,4 +17,9 @@ module.exports = {
             .then(console.log("does this work?")).then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+
+    test: (req, res) => {
+        console.log("you can do this")
+        res.send("../public/index.html");
+    }
 }
