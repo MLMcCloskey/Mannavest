@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import API from '../utils/API';
 
 class Navbar extends React.Component {
 
@@ -6,6 +7,14 @@ class Navbar extends React.Component {
     searchText: ""
   }
   
+  componentDidMount() {
+    this.testAPI();
+  }
+
+  testAPI = ()=> {
+    API.test().catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className='navigation'>

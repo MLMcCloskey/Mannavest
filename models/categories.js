@@ -5,7 +5,7 @@ var categoriesScheme = new Schema({
     category: {
         type: String,
         trim: false,
-        required: true
+        // required: true
     },
     cards: {
       type: Array,
