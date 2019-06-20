@@ -1,8 +1,8 @@
-const router = require("express").Router();
-const cardController = require("../../controller/cardController");
+const router = require('express').Router();
+const cardController = require('../../controller/cardController');
 
 
-router.route("/upload")
+router.route('/createCategory')
     .post(cardController.create);
 
     

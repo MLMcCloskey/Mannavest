@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addList, addCard } from '../actions';
+import API from '../utils/API';
 
 
 class ActionButton extends React.Component {
@@ -37,6 +38,13 @@ class ActionButton extends React.Component {
             dispatch(addList(category))
         }
         else return;
+
+        API.createCategory({
+            category: this.state.category,
+            cards: null
+        })
+        .catch(err => console.log(err));
+
         this.closeForm(e);
     }
 
