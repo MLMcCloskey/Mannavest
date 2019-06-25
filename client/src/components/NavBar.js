@@ -7,9 +7,9 @@ class Navbar extends React.Component {
     searchText: ""
   }
   
-  componentDidMount() {
-    this.testAPI();
-  }
+  // componentDidMount() {
+  //   this.testAPI();
+  // }
 
   testAPI = ()=> {
     API.test().catch(err => console.log(err));

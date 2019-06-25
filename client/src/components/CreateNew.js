@@ -41,7 +41,7 @@ class ActionButton extends React.Component {
 
         API.createCategory({
             category: this.state.category,
-            cards: null
+            cards: []
         })
         .catch(err => console.log(err));
 
@@ -56,6 +56,13 @@ class ActionButton extends React.Component {
             dispatch(addCard(listID, title, description, cost, image))
         }
         else return;
+
+        API.addCard({ 
+            id: this.props.listID,
+            card: this.state 
+        })
+        .catch(err => console.log(err));
+
         this.closeForm(e);
     }
     
