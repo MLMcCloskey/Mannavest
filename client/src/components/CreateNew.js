@@ -52,6 +52,9 @@ class ActionButton extends React.Component {
         e.preventDefault();
         const { dispatch, listID } = this.props;
         const { title, description, cost, image } = this.state;
+        console.log(`props: ${this.props}`);
+        console.log(`state: ${this.state}`);
+        console.log(this.parentNode);
         if (title, description, cost, image) {
             dispatch(addCard(listID, title, description, cost, image))
         }
@@ -59,7 +62,8 @@ class ActionButton extends React.Component {
 
         API.addCard({ 
             id: this.props.listID,
-            card: this.state 
+            card: this.state,
+            category: this.props.category
         })
         .catch(err => console.log(err));
 
@@ -75,7 +79,7 @@ class ActionButton extends React.Component {
         return (
             <div>
                 <button type="button" 
-                        onClick={this.openForm}
+                        onClick={this.openForm}                        
                         className="btn btn-secondary btn-lg btn-block "
                 >
                     {buttonText}

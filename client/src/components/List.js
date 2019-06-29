@@ -9,15 +9,19 @@ const List = (props) => {
             <hr />
                 { props.cards.map(card =>                
                     <ListItem 
-                        key={card.id}
+                        key={card._id}
                         title={card.title}
                         description={card.description}
                         image={card.image}
                         cost={card.cost}
                         progress={0}
+                        category={props.category}
                     />
                 )}
-            <ActionButton listID={props.listID}/>
+            <ActionButton 
+                listID={props.listID}
+                category={props.category}
+            />
         </div>
     )
 }

@@ -2,7 +2,7 @@ const db = require('../models');
 
 module.exports = {
     create: function (req, res) {
-        console.log('new card loading');
+        console.log(req.body);
         db.categories
             .create(req.body)
             .then(dbModel => res.json(dbModel))
@@ -12,8 +12,9 @@ module.exports = {
     addCard: (req, res) => {
         console.log("adding card to registry");
         console.log(req.body.card);
+        console.log(req.body);
         db.categories
-            .updateOne({ category: "Supplies" },
+            .updateOne({ category: req.body.category },
                 {
                     $push: {
                         cards: [{
@@ -28,7 +29,7 @@ module.exports = {
             // .findOneAndUpdate({ category: "Supplies" },
             //     {
             //         $push: {
-            //             cards: req.body.card.title
+            //             cards: req.body.card
             //         }
             //     }
             // )
@@ -38,7 +39,7 @@ module.exports = {
 
     // find all company information when route hit
     findAll: (req, res) => {
-        console.log("Loading them all");
+        console.log(req.body);
         db.categories
             .find({})
             .then(console.log("does this work?")).then(dbModel => res.json(dbModel))

@@ -1,6 +1,11 @@
 import axios from 'axios';
 
 export default {
+  getRegistry: data => {
+    console.log("Loading the registry...");
+    return axios.post('/api/cardRoutes/getRegistry');
+  },
+
   createCategory: data => {
     console.log("creating a new catgory...");
     console.log(data);

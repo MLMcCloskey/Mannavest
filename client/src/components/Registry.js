@@ -2,13 +2,29 @@ import React, { Component } from 'react';
 import List from './List';
 import ActionButton from './CreateNew';
 import { connect } from 'react-redux';
+import API from '../utils/API';
 
 class Registry extends Component {
 
   state = {
-    section: "about"
+    section: "about",
+    categories: []
   }
   
+  componentWillMount() {
+    this.getRegistry();
+  }
+
+  getRegistry = () => {
+    API.getRegistry()
+      .then(res => {
+        this.setState({
+          categories: res.data
+        })
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     const { lists } = this.props;
     return (
@@ -17,9 +33,9 @@ class Registry extends Component {
           <h5 className='innerNavigation'>About Us</h5>
           <h5 className='innerNavigation'>What We Need</h5>
         </div>
-        {lists.map(list =>
-          <List key={list.id}
-            listID={list.id}
+        {this.state.categories.map(list =>
+          <List key={list._id}
+            listID={list._id}
             category={list.category}
             cards={list.cards}>
           </List>
