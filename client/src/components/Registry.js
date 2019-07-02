@@ -11,7 +11,11 @@ class Registry extends Component {
     categories: []
   }
   
-  componentWillMount() {
+  componentDidMount() {
+    this.getRegistry();
+  }
+
+  componentDidUpdate() {
     this.getRegistry();
   }
 
