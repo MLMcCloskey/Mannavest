@@ -15,8 +15,8 @@ class Registry extends Component {
     this.getRegistry();
   }
 
-  componentDidUpdate() {
-    API.getRegistry();
+  componentWillReceiveProps() {
+    this.getRegistry();
   }
 
   getRegistry = () => {
