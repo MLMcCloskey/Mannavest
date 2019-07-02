@@ -9,7 +9,7 @@ const List = (props) => {
             <hr />
                 { props.cards.map(card =>                
                     <ListItem 
-                        key={card._id}
+                        key={card.title}
                         title={card.title}
                         description={card.description}
                         image={card.image}
