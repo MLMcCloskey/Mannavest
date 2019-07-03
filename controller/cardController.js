@@ -21,7 +21,8 @@ module.exports = {
                             title: req.body.card.title,
                             description: req.body.card.description,
                             cost: req.body.card.cost,
-                            image: req.body.card.image
+                            image: req.body.card.image,
+                            progress: 0,
                         }]
                     }
                 }
