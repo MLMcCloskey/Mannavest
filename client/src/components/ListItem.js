@@ -32,7 +32,7 @@ class ListItem extends React.Component {
                 <div className="card-body">
                     <h5 className="card-title">{this.props.title}</h5>
                     <p className="card-text">{this.props.description}</p>
-                    <a href="#" className="btn btn-primary" onMouseDown={this.handleContribution} onClick={this.handleProgress}>Contribute</a>
+                    <button className="btn btn-primary" onMouseDown={this.handleContribution} onClick={this.handleProgress}>Contribute</button>
                 </div>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">
