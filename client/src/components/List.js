@@ -14,7 +14,7 @@ const List = (props) => {
                         description={card.description}
                         image={card.image}
                         cost={card.cost}
-                        progress={0}
+                        progress={card.progress}
                         category={props.category}
                     />
                 )}
