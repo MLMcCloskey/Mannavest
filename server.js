@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cardRoutes = require('./routes');
-require('dotenv').load();
+const dotenv = require('dotenv');
 
 // port variable (local or production)
 const PORT = process.env.PORT || 3001;
