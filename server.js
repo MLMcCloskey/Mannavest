@@ -2,11 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cardRoutes = require('./routes');
-<<<<<<< HEAD
 const dotenv = require('dotenv');
-=======
-const dotenv = require('dotenv').load();
->>>>>>> 7a0b8ebc7579b0dd34b23250b6df9e23da5409e5
 
 // port variable (local or production)
 const PORT = process.env.PORT || 3001;
@@ -42,11 +38,12 @@ Promise = mongoose.Promise;
 
 // connect to database (local or production)
 // mongoose.set('useFindAndModify', false);
-// mongoose.connect("mongodb://bruder44:AgentRooney10@ds261486.mlab.com:61486/mannavest", {useNewUrlParser: true}, err => {
-mongoose.connect("mongodb://localhost:27017/mannavest", { useNewUrlParser: true }, err => {
-    if (err) console.error(err);
-    else console.log(`Database Connected!!!`);
-});
+// mongoose.connect("mongodb://bruder44:AgentRooney10!@ds261486.mlab.com:61486/mannavest", {useNewUrlParser: true}, err => {
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/mannavest";
+mongoose.connect(MONGODB_URI), {useNewUrlParser: true}, err => {
+if (err) console.error(err);
+else console.log(`Database Connected!!!`);
+};
 // routes or import from route module
 
 // connect to server (local or production)
