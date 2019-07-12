@@ -4,7 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "engines": {
-    "node": "10.15.3"
+    "node": "10.14.2"
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.0.2",
