@@ -35,7 +35,9 @@ app.use(bodyParser.json());
 app.use(cardRoutes);
 Promise = mongoose.Promise;
 
-
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+  }
 
 // connect to database (local or production)
 // mongoose.set('useFindAndModify', false);
