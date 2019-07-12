@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import List from './List';
 import ActionButton from './CreateNew';
 import { connect } from 'react-redux';
 import API from '../utils/API';
+import { useAuth0 } from "../react-auth0-wrapper";
 
 class Registry extends Component {
 
@@ -30,6 +31,7 @@ class Registry extends Component {
   }
 
   render() {
+    const { loading, user } = useAuth0();
     const { lists } = this.props;
     return (
       <div className='registry'>
@@ -37,6 +39,7 @@ class Registry extends Component {
           <h5 className='innerNavigation'>About Us</h5>
           <h5 className='innerNavigation'>What We Need</h5>
         </div>
+        <h1> {user.name} </h1>
         {this.state.categories.map(list =>
           <List key={list._id}
             listID={list._id}
