@@ -23,8 +23,8 @@
     "redux": "^4.0.4"
   },
   "scripts": {
-    "start": "if-env NODE_ENV=production && yarn run start:prod && cd client || yarn run start:dev",
-    "client": "cd client && yarn run start",
+    "start": "if-env NODE_ENV=production && yarn start:prod && cd client || yarn start:dev",
+    "client": "cd client && yarn start",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn run client\"",
     "start:prod": "node server.js",
     "build": "cd client && yarn build",
