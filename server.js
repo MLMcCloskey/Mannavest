@@ -36,7 +36,7 @@ app.use(cardRoutes);
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
   }
-  
+
 Promise = mongoose.Promise;
 
 
@@ -44,7 +44,8 @@ Promise = mongoose.Promise;
 // connect to database (local or production)
 // mongoose.set('useFindAndModify', false);
 // mongoose.connect("mongodb://bruder44:AgentRooney10@ds261486.mlab.com:61486/mannavest", {useNewUrlParser: true}, err => {
-mongoose.connect("mongodb://localhost:27017/mannavest", { useNewUrlParser: true }, err => {
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/mannavest";
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, err => {
     if (err) console.error(err);
     else console.log(`Database Connected!!!`);
 });
