@@ -25,11 +25,12 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && yarn start:prod && cd client || yarn start:dev",
     "client": "cd client && yarn start",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn run client\"",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn client\"",
     "start:prod": "node server.js",
     "build": "cd client && yarn build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "cd client && yarn install --only=dev && yarn install && yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
