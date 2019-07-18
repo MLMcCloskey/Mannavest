@@ -35,6 +35,7 @@ app.use(bodyParser.json());
 app.use(cardRoutes);
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
+    console.log("writing code sucks");
     app.use(express.static("client/build"));
   }
 
