@@ -46,7 +46,9 @@ Promise = mongoose.Promise;
 // connect to database (local or production)
 // mongoose.set('useFindAndModify', false);
 // mongoose.connect("mongodb://bruder44:AgentRooney10@ds261486.mlab.com:61486/mannavest", {useNewUrlParser: true}, err => {
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/mannavest";
+const MONGODB_URI = 
+   // process.env.MONGODB_URI || 
+    "mongodb://localhost:27017/mannavest";
 console.log("this the uri " + MONGODB_URI);
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, err => {
     if (err) console.error(err);

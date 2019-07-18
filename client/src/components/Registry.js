@@ -31,7 +31,7 @@ class Registry extends Component {
   }
 
   render() {
-    const { loading, user } = useAuth0();
+    // const { loading, user } = useAuth0();
     const { lists } = this.props;
     return (
       <div className='registry'>
@@ -39,7 +39,7 @@ class Registry extends Component {
           <h5 className='innerNavigation'>About Us</h5>
           <h5 className='innerNavigation'>What We Need</h5>
         </div>
-        <h1> {user.name} </h1>
+        {/* <h1> {user.name} </h1> */}
         {this.state.categories.map(list =>
           <List key={list._id}
             listID={list._id}
