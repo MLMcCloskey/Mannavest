@@ -22,7 +22,15 @@ import API from '../utils/API';
 // render() {
 
 const Navbar = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user, loading } = useAuth0();
+
+  // if (loading || !user) {
+  //   return (
+  //     <div>
+  //       <p> hold up </p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className='navigation'>

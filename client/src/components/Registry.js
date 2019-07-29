@@ -53,6 +53,36 @@ class Registry extends Component {
   }
 }
 
+
+// --------------------- Rebuilt with Hooks --------------------  //
+
+// const Registry = (props) => {
+//   const { loading, user } = useAuth0();
+//   const [categories, setCategories] = useState(0);
+
+//   useEffect( ()=> {
+//     // load the api
+//   });
+
+//   return (
+//     <div className='registry'>
+//         <div className='innerNav'>
+//           <h5 className='innerNavigation'>About Us</h5>
+//           <h5 className='innerNavigation'>What We Need</h5>
+//         </div>
+//         {/* <h1> {user.name} </h1> */}
+//         {this.state.categories.map(list =>
+//           <List key={list._id}
+//             listID={list._id}
+//             category={list.category}
+//             cards={list.cards}>
+//           </List>
+//         )}
+//         <ActionButton list />
+//       </div>
+//   );
+// }
+
 const mapStateToProps = state => ({
   lists: state.lists
 })
