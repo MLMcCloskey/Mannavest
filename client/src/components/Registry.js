@@ -9,10 +9,13 @@ class Registry extends Component {
 
   state = {
     section: "about",
+    userID: "",
     categories: []
   }
   
   componentDidMount() {
+    console.log(this.props);
+    this.setState({userID: this.props.userID});
     this.getRegistry();
   }
 
@@ -39,7 +42,7 @@ class Registry extends Component {
           <h5 className='innerNavigation'>About Us</h5>
           <h5 className='innerNavigation'>What We Need</h5>
         </div>
-        {/* <h1> {user.name} </h1> */}
+        <h1> {this.state.userID} </h1>
         {this.state.categories.map(list =>
           <List key={list._id}
             listID={list._id}

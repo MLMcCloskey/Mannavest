@@ -24,6 +24,11 @@ const App = () => {
       <Loading />
     );
   }
+  // auth0|5d254d0aed54f30e5cff1161" client 1
+  // auth0|5d254d0aed54f30e5cff1161"
+  // auth0|5d254d0aed54f30e5cff1161
+  // auth0|5d254d0aed54f30e5cff1161
+  // 
 
     return (
       <div className="App">
@@ -32,7 +37,7 @@ const App = () => {
           <Switch>
             <Route exact path = '/' component = {Home} />
             <Route exact path = '/about' component = {AboutUs} />
-            <PrivateRoute exact path = '/registry' component = {Registry} />
+            <PrivateRoute exact path = '/registry' render = {(props) => <Registry {...props} userID={user.sub}/>} />
           </Switch>
           {/* {this.state.page === 'About' ? <AboutUs /> : <Registry lists />} */}
           {/* { lists.map(list => 
