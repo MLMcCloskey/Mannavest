@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-/* ******************************************************************************************* */
+/* ************************************   Custom Css   ******************************************** */
 
 /* Containers */
 .about, .homePage {
@@ -34,11 +34,11 @@ code {
   right: 0;
 }
 
-/* NavBar styling */
+/**********************   NavBar styling   ***************************/
 .navbar {
   /* width: 80vw; */
   padding: 5px 10%;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 .my-page {
   color: white;
@@ -54,7 +54,23 @@ code {
   padding: 20px 20px 0
 }
 
-/* Card styling */
+
+
+
+/*************************   Registry Page     ***********************/
+.infoField {
+  width: 70vw;
+  height: 2.5em;
+  margin-bottom: 25px;
+}
+
+#aboutField {
+  height: 7.5em;
+}
+
+
+
+/*************************    Card styling    ************************/
 .listName {
   background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/ricepaper.png');
   width: 80vw;

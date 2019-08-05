@@ -21,6 +21,9 @@ const List = (props) => {
             <ActionButton 
                 listID={props.listID}
                 category={props.category}
+                companyName={props.companyName}
+                aboutUs={props.aboutUs}
+                userID={props.userID}
             />
         </div>
     )

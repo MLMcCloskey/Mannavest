@@ -10,17 +10,25 @@ class Registry extends Component {
   state = {
     section: "about",
     userID: "",
+    companyField: "",
+    aboutField: "",
     categories: []
   }
-  
+
   componentDidMount() {
     console.log(this.props);
-    this.setState({userID: this.props.userID});
+    this.setState({ userID: this.props.userID });
     this.getRegistry();
   }
 
   componentWillReceiveProps() {
     this.getRegistry();
+  }
+
+  handleFormInput = (e) => {
+    let field = e.target.id;
+    console.log(field);
+    this.setState({ [field]: e.target.value })
   }
 
   getRegistry = () => {
@@ -38,17 +46,29 @@ class Registry extends Component {
     const { lists } = this.props;
     return (
       <div className='registry'>
-        <div className='innerNav'>
+        {/* <div className='innerNav'>
           <h5 className='innerNavigation'>About Us</h5>
           <h5 className='innerNavigation'>What We Need</h5>
-        </div>
-        <h1> {this.state.userID} </h1>
+        </div> */}
+
+        <h3> Build your own page to show your project to the world! </h3>
+
+        <h4>{this.state.companyField ? this.state.companyField : "Name"}</h4>
+        <input type="text" className="infoField" id="companyField" placeholder={this.state.companyField ? this.state.companyField : "The name of your company or project..."} onChange={this.handleFormInput} />
+
+        <h4>About Us</h4>
+        <textarea type="text" className="infoField" id="aboutField" placeholder={this.state.aboutField ? this.state.aboutField : "Tell the world about your company or project..."} onChange={this.handleFormInput} />
+
+        <h4>Your Registry</h4>
         {this.state.categories.map(list =>
           <List key={list._id}
             listID={list._id}
             category={list.category}
-            cards={list.cards}>
-          </List>
+            cards={list.cards}
+            companyName={this.state.companyField}
+            aboutUs={this.state.aboutField}
+            userID={this.state.userID}
+          />          
         )}
         <ActionButton list />
       </div>

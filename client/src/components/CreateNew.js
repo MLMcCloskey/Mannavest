@@ -11,7 +11,10 @@ class ActionButton extends React.Component {
         description: "",
         cost: 0,
         image: "",
-        category: ""
+        category: "",
+        companyName: this.props.companyName,
+        aboutUs: this.props.aboutUs,
+        userID: this.props.userID
     }
 
     // methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
