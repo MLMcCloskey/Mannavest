@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export default {
   getRegistry: data => {
-    console.log("Loading the registry...");
-    return axios.post('/api/cardRoutes/getRegistry');
+    console.log("Loading the registry... for user with id " + data);
+    return axios.post('/api/cardRoutes/getRegistry', data);
   },
 
   createCategory: data => {

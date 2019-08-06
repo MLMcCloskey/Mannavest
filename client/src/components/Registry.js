@@ -18,11 +18,11 @@ class Registry extends Component {
   componentDidMount() {
     console.log(this.props);
     this.setState({ userID: this.props.userID });
-    this.getRegistry();
+    this.getRegistry(this.props.userID);
   }
 
   componentWillReceiveProps() {
-    this.getRegistry();
+    this.getRegistry(this.props.userID);
   }
 
   handleFormInput = (e) => {
@@ -31,14 +31,15 @@ class Registry extends Component {
     this.setState({ [field]: e.target.value })
   }
 
-  getRegistry = () => {
-    API.getRegistry()
+  getRegistry = (id) => {
+    console.log(id);
+    API.getRegistry(id)
       .then(res => {
         console.log(res.data);
         this.setState({
           categories: res.data,
-          companyField: res.data[2].companyName,
-          aboutField: res.data[2].aboutUs
+          companyField: res.data[0].companyName,
+          aboutField: res.data[0].aboutUs
         })
       })
       .catch(err => console.log(err));
