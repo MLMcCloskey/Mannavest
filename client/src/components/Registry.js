@@ -34,8 +34,11 @@ class Registry extends Component {
   getRegistry = () => {
     API.getRegistry()
       .then(res => {
+        console.log(res.data);
         this.setState({
-          categories: res.data
+          categories: res.data,
+          companyField: res.data[2].companyName,
+          aboutField: res.data[2].aboutUs
         })
       })
       .catch(err => console.log(err));
@@ -53,7 +56,7 @@ class Registry extends Component {
 
         <h3> Build your own page to show your project to the world! </h3>
 
-        <h4>{this.state.companyField ? this.state.companyField : "Name"}</h4>
+        <h4>Name: {this.state.companyField ? this.state.companyField : "Name"}</h4>
         <input type="text" className="infoField" id="companyField" placeholder={this.state.companyField ? this.state.companyField : "The name of your company or project..."} onChange={this.handleFormInput} />
 
         <h4>About Us</h4>
