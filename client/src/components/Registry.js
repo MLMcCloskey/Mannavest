@@ -60,6 +60,7 @@ class Registry extends Component {
         <textarea type="text" className="infoField" id="aboutField" placeholder={this.state.aboutField ? this.state.aboutField : "Tell the world about your company or project..."} onChange={this.handleFormInput} />
 
         <h4>Your Registry</h4>
+        <h5>Create a list of things you will need</h5>
         {this.state.categories.map(list =>
           <List key={list._id}
             listID={list._id}
@@ -68,9 +69,14 @@ class Registry extends Component {
             companyName={this.state.companyField}
             aboutUs={this.state.aboutField}
             userID={this.state.userID}
-          />          
+          />
         )}
-        <ActionButton list />
+        <ActionButton 
+          companyName={this.state.companyField}
+          aboutUs={this.state.aboutField}
+          userID={this.state.userID}
+          list
+        />
       </div>
     )
   }

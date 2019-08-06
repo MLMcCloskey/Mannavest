@@ -12,10 +12,20 @@ class ActionButton extends React.Component {
         cost: 0,
         image: "",
         category: "",
-        companyName: this.props.companyName,
-        aboutUs: this.props.aboutUs,
+        companyName: "",
+        aboutUs: "",
         userID: this.props.userID
     }
+
+    // Lifecycle events ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    componentWillReceiveProps() {
+        this.setState({
+            companyName: this.props.companyName,
+            aboutUs: this.props.aboutUs,
+            userID: this.props.userID
+        });
+      }
+
 
     // methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     openForm = (e) => {
@@ -36,7 +46,7 @@ class ActionButton extends React.Component {
     handleAddList = (e) => {
         e.preventDefault();
         const { dispatch } = this.props;
-        const { category } = this.state;
+        const { category, companyName, userID, aboutUs } = this.state;
         if (category) {
             dispatch(addList(category))
         }
@@ -44,7 +54,10 @@ class ActionButton extends React.Component {
 
         API.createCategory({
             category: this.state.category,
-            cards: []
+            cards: [],
+            userID: this.state.userID,
+            companyName: this.state.companyName,
+            aboutUs: this.state.aboutUs
         })
         .catch(err => console.log(err));
 
