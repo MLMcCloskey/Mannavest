@@ -19,8 +19,7 @@ export default {
   },
 
   findCompany: data => {
-    console.log("pulling up information for the page");
-    console.log(data);
+    console.log(`pulling up information for ${data}`);    
     return axios.post('/api/cardRoutes/findCompany', data);
   },
 

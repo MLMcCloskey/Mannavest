@@ -57,7 +57,14 @@ module.exports = {
     },
 
     findCompany: (req, res) => {
-
+        console.log(req.body);
+        let company = (JSON.stringify(req.body).substring(1).split(":")[0]);
+        console.log(company);
+        db.categories
+            .find({ companyName: eval(company) })
+            // .sort({ name: -1 })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
     }
     // test: (req, res) => {
     //     console.log("you can do this")
