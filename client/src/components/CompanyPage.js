@@ -15,16 +15,16 @@ class CompanyPage extends Component {
   
   componentDidMount() {
     console.log(this.props);
-    this.setState({userID: this.props.userID});
-    this.findCompany();
+    // this.setState({userID: this.props.userID});
+    this.findCompany(this.props.match.params.companyName);
   }
 
   componentWillReceiveProps() {
     this.findCompany();
   }
 
-  findCompany    = () => {
-    API.findCompany ()
+  findCompany = (companyName) => {
+    API.findCompany(companyName)
       .then(res => {
         this.setState({
           categories: res.data

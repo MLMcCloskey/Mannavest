@@ -56,11 +56,12 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     findCompany: (req, res) => {
-        // console.log(`retrieving data for ${JSON.stringify(req, null, 4)}`);
-        console.log(req.params);
+        console.log(req.body);
+        let company = (JSON.stringify(req.body).substring(1).split(":")[0]);
+        console.log(company);
         db.categories
-            .find({ _id: req.params._id})
-            .sort({ name: -1 })
+            .find({ companyName: eval(company) })
+            // .sort({ name: -1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     }
