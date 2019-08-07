@@ -30,7 +30,7 @@ class ListOfCompanies extends React.Component {
                 { this.state.names.map(company =>                                
                     <p 
                         key={company}
-                        className={"companyName"}
+                        className="companyName"
                     > 
                       {company} 
                     </p>
