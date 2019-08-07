@@ -16,10 +16,10 @@ import { useAuth0 } from "./react-auth0-wrapper";
 
 const App = () => {
 
-    // const { lists } = this.props;
-    const { isAuthenticated, loginWithRedirect, logout, user, loading } = useAuth0();
+  // const { lists } = this.props;
+  const { isAuthenticated, loginWithRedirect, logout, user, loading } = useAuth0();
 
-    if (loading) {
+  if (loading) {
     return (
       <Loading />
     );
@@ -27,14 +27,15 @@ const App = () => {
   // auth0|5d254d0aed54f30e5cff1161" client 1
   // auth0|5d254d0aed54f30e5cff1161
 
+  if (isAuthenticated) {
     return (
       <div className="App">
         <Router>
           <Header />
           <Switch>
-            <Route exact path = '/' component = {Home} />
-            <Route exact path = '/about' component = {AboutUs} />
-            <PrivateRoute exact path = '/registry' render = {(props) => <Registry {...props} userID={user.sub}/>} />
+            <Route exact path='/' component={Home} />
+            <Route exact path='/about' component={AboutUs} />
+            <PrivateRoute exact path='/registry' render={(props) => <Registry {...props} userID={user.sub} />} />
           </Switch>
           {/* {this.state.page === 'About' ? <AboutUs /> : <Registry lists />} */}
           {/* { lists.map(list => 
@@ -48,7 +49,21 @@ const App = () => {
         </Router>
       </div>
     );
-  
+  }
+
+  return (
+    <div className="App">
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/about' component={AboutUs} />
+          <PrivateRoute exact path='/registry' render={(props) => <Registry {...props} />} />
+        </Switch>
+      </Router>
+    </div>
+  );
+
 }
 
 // const mapStateToProps = state => ({

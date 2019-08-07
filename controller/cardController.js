@@ -39,15 +39,22 @@ module.exports = {
     },
 
     // find all company information when route hit
-    findAll: (req, res) => {
+    getRegistry: (req, res) => {
         let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
         console.log(user);
         db.categories
             .find({ userID: eval(user) })
-            .then(console.log(res.data)).then(dbModel => res.json(dbModel))
+            .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
 
+    findAllCompanies: (req, res) => {
+
+    },
+
+    findCompany: (req, res) => {
+
+    }
     // test: (req, res) => {
     //     console.log("you can do this")
     //     res.send("../public/index.html");
