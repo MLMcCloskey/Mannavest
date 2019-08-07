@@ -49,7 +49,11 @@ module.exports = {
     },
 
     findAllCompanies: (req, res) => {
-
+        console.log("loading list of companies...");
+        db.categories
+            .find({})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
     },
 
     findCompany: (req, res) => {

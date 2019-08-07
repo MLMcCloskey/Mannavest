@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import { useAuth0 } from "./react-auth0-wrapper";
+import ListOfCompanies from './components/ListOfCompanies';
 
 const App = () => {
 
@@ -36,6 +37,7 @@ const App = () => {
             <Route exact path='/' component={Home} />
             <Route exact path='/about' component={AboutUs} />
             <PrivateRoute exact path='/registry' render={(props) => <Registry {...props} userID={user.sub} />} />
+            <Route exact path='/companies' component={ListOfCompanies} />
           </Switch>
           {/* {this.state.page === 'About' ? <AboutUs /> : <Registry lists />} */}
           {/* { lists.map(list => 
@@ -59,6 +61,7 @@ const App = () => {
           <Route exact path='/' component={Home} />
           <Route exact path='/about' component={AboutUs} />
           <PrivateRoute exact path='/registry' render={(props) => <Registry {...props} />} />
+          <Route exact path='/companies' component={ListOfCompanies} />
         </Switch>
       </Router>
     </div>
