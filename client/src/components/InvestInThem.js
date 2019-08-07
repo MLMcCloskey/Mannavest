@@ -5,41 +5,29 @@ import { connect } from 'react-redux';
 import API from '../utils/API';
 import { useAuth0 } from "../react-auth0-wrapper";
 
-class Registry extends Component {
+class InvestInThem extends Component {
 
   state = {
     section: "about",
     userID: "",
-    companyField: "",
-    aboutField: "",
     categories: []
   }
-
+  
   componentDidMount() {
     console.log(this.props);
-    this.setState({ userID: this.props.userID });
-    this.getRegistry(this.props.userID);
+    this.setState({userID: this.props.userID});
+    this.getRegistry();
   }
 
   componentWillReceiveProps() {
-    this.getRegistry(this.props.userID);
+    this.getRegistry();
   }
 
-  handleFormInput = (e) => {
-    let field = e.target.id;
-    console.log(field);
-    this.setState({ [field]: e.target.value })
-  }
-
-  getRegistry = (id) => {
-    console.log(id);
-    API.getRegistry(id)
+  getRegistry = () => {
+    API.getRegistry()
       .then(res => {
-        console.log(res.data);
         this.setState({
-          categories: res.data,
-          companyField: res.data[0].companyName,
-          aboutField: res.data[0].aboutUs
+          categories: res.data
         })
       })
       .catch(err => console.log(err));
@@ -50,37 +38,19 @@ class Registry extends Component {
     const { lists } = this.props;
     return (
       <div className='registry'>
-        {/* <div className='innerNav'>
+        <div className='innerNav'>
           <h5 className='innerNavigation'>About Us</h5>
           <h5 className='innerNavigation'>What We Need</h5>
-        </div> */}
+        </div>
 
-        <h3> Build your own page to show your project to the world! </h3>
-
-        <h4>Name: {this.state.companyField ? this.state.companyField : "Name"}</h4>
-        <input type="text" className="infoField" id="companyField" placeholder={this.state.companyField ? this.state.companyField : "The name of your company or project..."} onChange={this.handleFormInput} />
-
-        <h4>About Us</h4>
-        <textarea type="text" className="infoField" id="aboutField" placeholder={this.state.aboutField ? this.state.aboutField : "Tell the world about your company or project..."} onChange={this.handleFormInput} />
-
-        <h4>Your Registry</h4>
-        <h5>Create a list of things you will need</h5>
         {this.state.categories.map(list =>
           <List key={list._id}
             listID={list._id}
             category={list.category}
-            cards={list.cards}
-            companyName={this.state.companyField}
-            aboutUs={this.state.aboutField}
-            userID={this.state.userID}
-          />
+            cards={list.cards}>
+          </List>
         )}
-        <ActionButton 
-          companyName={this.state.companyField}
-          aboutUs={this.state.aboutField}
-          userID={this.state.userID}
-          list
-        />
+        <ActionButton list />
       </div>
     )
   }
@@ -120,4 +90,4 @@ const mapStateToProps = state => ({
   lists: state.lists
 })
 
-export default connect(mapStateToProps)(Registry);
+export default connect(mapStateToProps)(InvestInThem);

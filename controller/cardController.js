@@ -40,10 +40,11 @@ module.exports = {
 
     // find all company information when route hit
     findAll: (req, res) => {
-        console.log(req.body);
+        let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
+        console.log(user);
         db.categories
-            .find({})
-            .then(console.log("does this work?")).then(dbModel => res.json(dbModel))
+            .find({ userID: eval(user) })
+            .then(console.log(res.data)).then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
 

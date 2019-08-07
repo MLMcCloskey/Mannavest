@@ -4,20 +4,45 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "engines": {
+<<<<<<< HEAD
     "node": "10.15.3"
+=======
+    "node": "10.14.2"
+>>>>>>> 4ebabbc67c7118c09baa58d942cc80ea47526f3b
   },
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.0.2",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
+<<<<<<< HEAD
     "dotenv": "^8.0.0",
+=======
+    "concurrently": "^4.1.1",
+>>>>>>> 4ebabbc67c7118c09baa58d942cc80ea47526f3b
     "express": "^4.17.0",
-    "mongoose": "^5.6.0"
+    "if-env": "^1.0.4",
+    "mongoose": "^5.6.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "^3.0.1",
+    "redux": "^4.0.4"
   },
   "scripts": {
+<<<<<<< HEAD
     "start": "react-scripts start",
+=======
+    "start": "if-env NODE_ENV=production && yarn start:prod && cd client || yarn start:dev",
+    "client": "cd client && yarn start",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn client\"",
+    "start:prod": "node server.js",
+>>>>>>> 4ebabbc67c7118c09baa58d942cc80ea47526f3b
     "build": "cd client && yarn build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "cd client && yarn install --only=dev && yarn install && yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"

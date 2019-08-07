@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PrivateRoute from "./components/PrivateRoute";
 import Header from './components/Header';
 // import Navbar from './components/NavBar';
 import Home from './components/Home';
@@ -7,17 +8,25 @@ import AboutUs from './components/AboutUs';
 // import ListItem from './components/ListItem';
 // import ActionButton from './components/CreateNew';
 import Registry from './components/Registry';
+import Loading from './components/Loading';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
+import { useAuth0 } from "./react-auth0-wrapper";
 
-class App extends Component {
-  state = {
-    page: 'About'
+const App = () => {
+
+    // const { lists } = this.props;
+    const { isAuthenticated, loginWithRedirect, logout, user, loading } = useAuth0();
+
+    if (loading) {
+    return (
+      <Loading />
+    );
   }
+  // auth0|5d254d0aed54f30e5cff1161" client 1
+  // auth0|5d254d0aed54f30e5cff1161
 
-  render() {
-    const { lists } = this.props;
     return (
       <div className="App">
         <Router>
@@ -25,7 +34,7 @@ class App extends Component {
           <Switch>
             <Route exact path = '/' component = {Home} />
             <Route exact path = '/about' component = {AboutUs} />
-            <Route exact path = '/registry' component = {Registry} />
+            <PrivateRoute exact path = '/registry' render = {(props) => <Registry {...props} userID={user.sub}/>} />
           </Switch>
           {/* {this.state.page === 'About' ? <AboutUs /> : <Registry lists />} */}
           {/* { lists.map(list => 
@@ -39,11 +48,11 @@ class App extends Component {
         </Router>
       </div>
     );
-  }
+  
 }
 
-const mapStateToProps = state => ({
-  lists: state.lists
-})
+// const mapStateToProps = state => ({
+//   lists: state.lists
+// })
 
-export default connect(mapStateToProps)(App);
+export default (App);
