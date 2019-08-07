@@ -44,7 +44,7 @@ module.exports = {
         console.log(user);
         db.categories
             .find({ userID: eval(user) })
-            .then(console.log(res.data)).then(dbModel => res.json(dbModel))
+            .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
 
