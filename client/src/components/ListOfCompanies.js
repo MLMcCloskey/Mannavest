@@ -1,5 +1,6 @@
 import React, {component} from 'react';
 import API from '../utils/API';
+import { Link } from "react-router-dom";
 
 class ListOfCompanies extends React.Component {
   state = {
@@ -28,12 +29,12 @@ class ListOfCompanies extends React.Component {
             <h2 className='companyListHeader'>Select a Company to Invest in.</h2>
             <hr />
                 { this.state.names.map(company =>                                
-                    <p 
+                    <Link to={ `invest/${company}` }
                         key={company}
                         className="companyName"
                     > 
                       {company} 
-                    </p>
+                    </Link>
                 )}
         </div>
     )

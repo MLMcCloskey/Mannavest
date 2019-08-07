@@ -55,10 +55,19 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-
     findCompany: (req, res) => {
-
+        // console.log(`retrieving data for ${JSON.stringify(req, null, 4)}`);
+        console.log(req.params);
+        db.categories
+            .find({ _id: req.params._id})
+            .sort({ name: -1 })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
     }
+   
+
+
+    
     // test: (req, res) => {
     //     console.log("you can do this")
     //     res.send("../public/index.html");
