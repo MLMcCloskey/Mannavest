@@ -1,8 +1,9 @@
 import React from 'react';
 import ListItem from './ListItem';
-import ActionButton from './CreateNew';
+import { useAuth0 } from '../react-auth0-wrapper';
 
-const List = (props) => {
+const Contribute = (props) => {
+    const { user } = useAuth0;
     return (
         <div className="listName">
             <h2 className='listHeader'>{props.category}</h2>
@@ -19,15 +20,8 @@ const List = (props) => {
                         path={props.path}
                     />
                 )}
-            <ActionButton 
-                listID={props.listID}
-                category={props.category}
-                companyName={props.companyName}
-                aboutUs={props.aboutUs}
-                userID={props.userID}
-            /> 
         </div>
     )
 }
 
-export default List;
+export default Contribute;

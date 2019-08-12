@@ -73,6 +73,7 @@ class Registry extends Component {
             companyName={this.state.companyField}
             aboutUs={this.state.aboutField}
             userID={this.state.userID}
+            path={this.props.match.path}
           />
         )}
         <ActionButton 

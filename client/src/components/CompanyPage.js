@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
-import List from './List';
-import ActionButton from './CreateNew';
+import AboutUs from './AboutUs';
+import ContributeSection from './ContributeSection';
 import { connect } from 'react-redux';
 import API from '../utils/API';
 import { useAuth0 } from "../react-auth0-wrapper";
@@ -10,6 +10,7 @@ class CompanyPage extends Component {
   state = {
     section: "about",
     userID: "",
+    aboutUs: "",
     categories: []
   }
   
@@ -33,6 +34,20 @@ class CompanyPage extends Component {
       .catch(err => console.log(err));
   }
 
+  renderCards = () => {
+    console.log("crazy idea");
+    return (
+      this.state.categories.map(list =>
+        <ContributeSection key={list._id}
+          listID={list._id}
+          category={list.category}
+          cards={list.cards} 
+          params={this.props.match.params}
+        />
+      )
+    )
+  }
+
   render() {
     // const { loading, user } = useAuth0();
     const { lists } = this.props;
@@ -40,17 +55,19 @@ class CompanyPage extends Component {
       <div className='registry'>
         <div className='innerNav'>
           <h5 className='innerNavigation'>About Us</h5>
-          <h5 className='innerNavigation'>What We Need</h5>
+          <h5 className='innerNavigation' onClick={this.renderCards}>What We Need</h5>
         </div>
 
+        {/* {(this.state.section === "about") ? <AboutUs /> : <ContributeSection props={this.state.categories} />} */}
         {this.state.categories.map(list =>
-          <List key={list._id}
+          <ContributeSection key={list._id}
             listID={list._id}
             category={list.category}
-            cards={list.cards}>
-          </List>
+            cards={list.cards}
+            path={this.props.match.path}
+          />          
         )}
-        <ActionButton list />
+
       </div>
     )
   }

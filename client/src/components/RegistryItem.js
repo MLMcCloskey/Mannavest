@@ -32,11 +32,7 @@ class ListItem extends React.Component {
                 <div className="card-body">
                     <h5 className="card-title">{this.props.title}</h5>
                     <p className="card-text">{this.props.description}</p>
-
-                    {(this.props.path === "/registry") ? 
-                        <button className="btn btn-primary" onMouseDown={this.handleContribution} onClick={this.handleProgress}>Edit</button>
-                    :   <button className="btn btn-primary" onMouseDown={this.handleContribution} onClick={this.handleProgress}>Contribute</button>
-                    }
+                    <button className="btn btn-primary" onMouseDown={this.handleContribution} onClick={this.handleProgress}>Edit</button>
                 </div>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">
