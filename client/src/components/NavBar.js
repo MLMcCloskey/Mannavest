@@ -46,14 +46,14 @@ const Navbar = () => {
               <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="about">About Us</a>
+              <a className="nav-link" href="/about">About Us</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="companies">Contribute</a>
+              <a className="nav-link" href="/companies">Contribute</a>
             </li>
           </ul>
           {/* <li className="nav-item"> */}
-          <a className="nav-link my-page" href="registry">My Page</a>
+          <a className="nav-link my-page" href="/registry">My Page</a>
           {/* </li> */}
           <form className="form-inline my-2 my-lg-0">
             <input className="form-control mr-sm-2 searchBar" type="search" placeholder="Search for companies..." aria-label="Search" />
