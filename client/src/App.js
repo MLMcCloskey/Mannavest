@@ -26,8 +26,6 @@ const App = () => {
       <Loading />
     );
   }
-  // auth0|5d254d0aed54f30e5cff1161" client 1
-  // auth0|5d254d0aed54f30e5cff1161
 
   if (isAuthenticated) {
     return (

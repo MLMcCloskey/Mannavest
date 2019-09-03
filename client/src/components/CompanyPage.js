@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import AboutUs from './AboutUs';
+import About from './About';
 import ContributeSection from './ContributeSection';
 import { connect } from 'react-redux';
 import API from '../utils/API';
@@ -10,10 +10,12 @@ class CompanyPage extends Component {
   state = {
     section: "about",
     userID: "",
+    companyName: "",
     aboutUs: "",
-    categories: []
+    categories: [],
+    display: "hidden"
   }
-  
+
   componentDidMount() {
     console.log(this.props);
     // this.setState({userID: this.props.userID});
@@ -28,45 +30,53 @@ class CompanyPage extends Component {
     API.findCompany(companyName)
       .then(res => {
         this.setState({
-          categories: res.data
+          categories: res.data,
+          companyName: res.data[0].companyName,
+          aboutUs: res.data[0].aboutUs
         })
       })
       .catch(err => console.log(err));
   }
 
   renderCards = () => {
-    console.log("crazy idea");
-    return (
-      this.state.categories.map(list =>
-        <ContributeSection key={list._id}
-          listID={list._id}
-          category={list.category}
-          cards={list.cards} 
-          params={this.props.match.params}
-        />
-      )
-    )
+    this.setState({ section: "contribute" });
+  }
+
+  setAbout = () => {
+    this.setState({ section: 'about' });
   }
 
   render() {
     // const { loading, user } = useAuth0();
     const { lists } = this.props;
+
     return (
       <div className='registry'>
+        <h2>{this.state.companyName}</h2>
+
         <div className='innerNav'>
-          <h5 className='innerNavigation'>About Us</h5>
+          <h5 className='innerNavigation' onClick={this.setAbout}>About Us</h5>
           <h5 className='innerNavigation' onClick={this.renderCards}>What We Need</h5>
+          <h5 className='innerNavigation'>What We Offer</h5>
         </div>
 
-        {/* {(this.state.section === "about") ? <AboutUs /> : <ContributeSection props={this.state.categories} />} */}
-        {this.state.categories.map(list =>
-          <ContributeSection key={list._id}
-            listID={list._id}
-            category={list.category}
-            cards={list.cards}
-            path={this.props.match.path}
-          />          
-        )}
+        <hr />
+
+        <div className='comapanyContent'>
+          {/* <h3>About</h3> */}
+          {/* <p>{this.state.aboutUs}</p> */}
+          {this.state.section === 'about' ? <About about={this.state.aboutUs} /> : <p />}
+
+          {this.state.categories.map(list =>
+            this.state.section === 'contribute' ? <ContributeSection key={list._id}
+              listID={list._id}
+              category={list.category}
+              cards={list.cards}
+              path={this.props.match.path}
+            /> : <p />
+          )}
+
+        </div>
 
       </div>
     )
