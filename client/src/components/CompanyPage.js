@@ -12,8 +12,7 @@ class CompanyPage extends Component {
     userID: "",
     companyName: "",
     aboutUs: "",
-    categories: [],
-    display: "hidden"
+    categories: []
   }
 
   componentDidMount() {
@@ -38,7 +37,7 @@ class CompanyPage extends Component {
       .catch(err => console.log(err));
   }
 
-  renderCards = () => {
+  setContribute = () => {
     this.setState({ section: "contribute" });
   }
 
@@ -56,7 +55,7 @@ class CompanyPage extends Component {
 
         <div className='innerNav'>
           <h5 className='innerNavigation' onClick={this.setAbout}>About Us</h5>
-          <h5 className='innerNavigation' onClick={this.renderCards}>What We Need</h5>
+          <h5 className='innerNavigation' onClick={this.setContribute}>What We Need</h5>
           <h5 className='innerNavigation'>What We Offer</h5>
         </div>
 
