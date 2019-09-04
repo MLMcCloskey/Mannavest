@@ -52,6 +52,7 @@ module.exports = {
         console.log("loading list of companies...");
         db.categories
             .find({})
+            .sort({companyName: 1})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
