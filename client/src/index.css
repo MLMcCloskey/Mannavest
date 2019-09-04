@@ -46,16 +46,29 @@ code {
   border-right: 1px solid white;
 }
 .searchBar {
-  margin-left: 20px
+  margin-left: 20px;
+  /* padding-right: -15px; */
+}
+
+.nav-item {
+  padding: 0 10px;
 }
 
 .innerNavigation {
   display: inline-block;
-  padding: 20px 20px 0
+  margin: 20px 20px 0;
+  cursor: pointer;
 }
 
+.title {
+  color: white;
+  margin: 0 auto;
+}
 
-
+.searchButton {
+  margin-left:-10px;
+  margin-right: 10px
+}
 
 /*************************   Registry Page     ***********************/
 .infoField {
@@ -131,5 +144,6 @@ code {
 .companyName {
   text-align: left;
   border-bottom: 1px solid black;
-  padding: 10px 6vw;
+  padding: 10px 10vw;
+  display: block;
 }

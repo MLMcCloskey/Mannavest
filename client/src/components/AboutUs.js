@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useAuth0 } from "../react-auth0-wrapper";
 
 const AboutUs = (props) => {
-  const { loading, user } = useAuth0();
+  // const { loading, user } = useAuth0();
   // let obj = JSON.parse(user);
   // console.log(user);
   // let [userInfo, setUserInfo] = useState(0);
