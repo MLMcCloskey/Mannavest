@@ -47,7 +47,6 @@ code {
 }
 .searchBar {
   margin-left: 20px;
-  /* padding-right: -15px; */
 }
 
 .nav-item {
@@ -58,6 +57,7 @@ code {
   display: inline-block;
   margin: 20px 20px 0;
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .title {
@@ -144,6 +144,9 @@ code {
 .companyName {
   text-align: left;
   border-bottom: 1px solid black;
-  padding: 10px 10vw;
+  padding: 10px;
   display: block;
+  width: 80vw;
+  margin: 0 auto;
+  background-color: beige;
 }
