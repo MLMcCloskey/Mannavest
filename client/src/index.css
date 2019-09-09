@@ -150,3 +150,17 @@ code {
   margin: 0 auto;
   background-color: beige;
 }
+
+
+
+/* *****************  Credit card form ******************* */
+.ccForm {
+  border: 2px solid black;
+  margin: 15px;
+  padding: 5px;
+}
+
+.ccField {
+  border: 1px solid grey;
+  padding: 2px;
+}

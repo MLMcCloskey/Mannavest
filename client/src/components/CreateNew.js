@@ -124,7 +124,7 @@ class ActionButton extends React.Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="image">Image</label>
-                    <input type="text" className="form-control" id="image" placeholder="Choose an image for the card" onChange={this.handleInputChange} />
+                    <input type="text" className="form-control" id="image" placeholder="Choose an image for the card or paste an img URL" onChange={this.handleInputChange} />
                 </div>
                 <button type="submit" className="btn btn-secondary form-buttons" onClick={this.closeForm}>Cancel</button>
                 <button type="submit" className="btn btn-primary form-buttons" onMouseDown={this.handleAddCard}>Submit</button>

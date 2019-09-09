@@ -15,6 +15,7 @@ import './App.css';
 import { useAuth0 } from "./react-auth0-wrapper";
 import ListOfCompanies from './components/ListOfCompanies';
 import CompanyPage from './components/CompanyPage';
+import StripeTest from './components/StripeTest';
 
 const App = () => {
 
@@ -63,6 +64,9 @@ const App = () => {
           <PrivateRoute exact path='/registry' render={(props) => <Registry {...props} />} />
           <Route exact path='/companies' component={ListOfCompanies} />
           <Route exact path='/invest/:companyName' component={CompanyPage} />
+
+          <Route exact path='/test' component={StripeTest} />
+
         </Switch>
       </Router>
     </div>

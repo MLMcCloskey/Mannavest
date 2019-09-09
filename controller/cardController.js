@@ -1,4 +1,5 @@
 const db = require('../models');
+const stripe = require("stripe")("sk_test_6o7OKH2L9Fj4rmH7u0z4fBVH001CyHRvbi");
 
 module.exports = {
     create: function (req, res) {
@@ -66,11 +67,26 @@ module.exports = {
             // .sort({ name: -1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
-    }
+    },
     // test: (req, res) => {
     //     console.log("you can do this")
     //     res.send("../public/index.html");
     // }
 
+    chargeIt: async (req, res) => {
+    // app.post("/charge", async (req, res) => {
+        try {
+          let {status} = await stripe.charges.create({
+            amount: 2000,
+            currency: "usd",
+            description: "An example charge",
+            source: req.body
+          });
+      
+          res.json({status});
+        } catch (err) {
+          res.status(500).end();
+        }      
+    }
 
 }

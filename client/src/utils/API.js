@@ -32,5 +32,10 @@ export default {
   test: () => {
     console.log("something is happening");
     return axios.get('/api/cardRoutes/');
+  },
+
+  chargeIt: (data) => {
+    console.log("using custom processor...")
+    return axios.post('/api/cardRoutes/chargeIt', data);
   }
 }

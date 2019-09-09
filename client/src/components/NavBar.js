@@ -60,7 +60,7 @@ const Navbar = () => {
           {/* </li> */}
           <form className="form-inline my-2 my-lg-0">
             <input className="form-control mr-sm-2 searchBar" type="search" placeholder="Search for companies..." aria-label="Search" />
-            <button className="btn btn-warning btn-outline-success my-2 my-sm-0 searchButton" type="submit"><i class="fa fa-search" /></button>            
+            <button className="btn btn-warning btn-outline-success my-2 my-sm-0 searchButton" type="submit"><i className="fa fa-search" /></button>            
           </form>
 
           {!isAuthenticated && (
