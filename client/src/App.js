@@ -39,6 +39,8 @@ const App = () => {
             <PrivateRoute exact path='/registry' render={(props) => <Registry {...props} userID={user.sub} />} />
             <Route exact path='/companies' component={ListOfCompanies} />
             <Route exact path='/invest/:companyName' component={CompanyPage} />
+
+            <Route exact path='/test' component={StripeTest} />
           </Switch>
           {/* {this.state.page === 'About' ? <AboutUs /> : <Registry lists />} */}
           {/* { lists.map(list => 
