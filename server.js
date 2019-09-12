@@ -55,7 +55,7 @@ app.post("/charge", async (req, res) => {
       });
   
       console.log("did we do it?");
-      console.log({status});
+      console.log(status);
 
       res.json({status});
     } catch (err) {

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {CardElement, injectStripe} from 'react-stripe-elements';
+import React, { Component } from 'react';
+import { CardElement, injectStripe } from 'react-stripe-elements';
 import API from '../utils/API';
 
 const createOptions = () => {
@@ -29,13 +29,25 @@ class CheckoutForm extends Component {
 
   state = {
     errorMessage: '',
+    address_city: '',
+    address_country: '',
+    address_line1: '',
+    address_line2: '',
+    address_state: '',
+    name: 'King Gonja',
   };
 
-  handleChange = ({error}) => {
+  handleChange = ({ error }) => {
     if (error) {
-      this.setState({errorMessage: error.message});
+      this.setState({ errorMessage: error.message });
     }
   };
+
+  // gather text from inputs
+  handleInputChange = e => {
+    let field = e.target.id;
+    this.setState({ [field]: e.target.value })
+}
 
   // taken from example
   handleSubmit = (evt) => {
@@ -51,14 +63,21 @@ class CheckoutForm extends Component {
   // taken from docs
   async submit(ev) {
     ev.preventDefault();
-    let {token} = await this.props.stripe.createToken({name: "Name"});
+    let { token } = await this.props.stripe.createToken({
+      name: this.state.name,
+      address_city: this.state.address_city,
+      address_country: this.state.address_country,
+      address_line1: this.state.address_line1,
+      address_line2: this.state.address_line2,
+      address_state: this.state.address_state
+    });
     console.log(token);
     let response = await fetch("/charge", {
       method: "POST",
-      headers: {"Content-Type": "text/plain"},
+      headers: { "Content-Type": "text/plain" },
       body: token.id
     });
-  
+
     console.log(response.body.getReader());
 
     if (response.ok) console.log("Purchase Complete!")
@@ -66,10 +85,10 @@ class CheckoutForm extends Component {
 
   // written to match my existing controller
   async mySubmit(e) {
-    e.preventDefault();    
-    let {token} = await this.props.stripe.createToken({name: "Name"});
+    e.preventDefault();
+    let { token } = await this.props.stripe.createToken({ name: this.state.name });
     // console.log(token);
-    API.chargeIt({body: token.id})
+    API.chargeIt({ body: token.id })
   }
 
   render() {
@@ -78,12 +97,41 @@ class CheckoutForm extends Component {
       <div className="CardDemo">
         <form
           className='ccForm'
-          // onSubmit={this.handleSubmit.bind(this)}
+        // onSubmit={this.handleSubmit.bind(this)}
         >
-          {/* <label> Name </label> */}
+          <div className='form-group'>
+            <label htmlFor='name' className='ccSection'> Name </label>
+            <input type='text' className='ccField CardField StripeElement' placeholder='Name' id='name' onChange={this.handleInputChange}></input>
+          </div>
+
+          <div className='form-group'>
+            <label htmlFor='address_line1' className='ccSection'> Address </label>
+            <input type='text' className='ccField CardField StripeElement' placeholder='address_line1' id='address_line1' onChange={this.handleInputChange}></input>
+
+            {/* <label htmlFor='address_line2' className='ccSection'> Address Line 2 </label> */}
+            <input type='text' className='ccField CardField StripeElement' placeholder='address_line2' id='address_line2' onChange={this.handleInputChange}></input>
+          </div>
+
+          <div className='form-group'>
+            <label htmlFor='address_city' className='ccSection'> City </label>
+            <input type='text' className='ccField CardField StripeElement' placeholder='address_city' id='address_city' onChange={this.handleInputChange}></input>
+          </div>
+
+          <div className='form-group'>
+            <label htmlFor='address_state' className='ccSection'> State </label>
+            <input type='text' className='ccField CardField StripeElement' placeholder='address_state' id='address_state' onChange={this.handleInputChange}></input>
+          </div>
+
+          <div className='form-group'>
+            <label htmlFor='address_country' className='ccSection'> Country </label>
+            <input type='text' className='ccField CardField StripeElement' placeholder='address_country' id='address_country' onChange={this.handleInputChange}></input>
+          </div>
+          {/*
+          *metadata*
+          */}
 
           <label>
-            ~~~~~~~~~~~~~~~~ Card details ~~~~~~~~~~~~~~~~
+            ~~~~~~~~~~~~~~~~ Card Details ~~~~~~~~~~~~~~~~
             <CardElement
               onChange={this.handleChange}
               {...createOptions()}

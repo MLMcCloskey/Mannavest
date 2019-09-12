@@ -156,11 +156,21 @@ code {
 /* *****************  Credit card form ******************* */
 .ccForm {
   border: 2px solid black;
-  margin: 15px;
+  margin: 15px auto;
   padding: 5px;
+  max-width: 500px;
+  text-align: left;
+  /* display: block; */
 }
 
 .ccField {
   border: 1px solid grey;
   padding: 2px;
+  margin: 5px 10px auto;
+  display: block;
+  width: 90%;
+}
+
+.ccSection {
+  
 }
