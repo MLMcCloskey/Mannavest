@@ -34,7 +34,8 @@ class CheckoutForm extends Component {
     address_line1: '',
     address_line2: '',
     address_state: '',
-    name: 'King Gonja',
+    name: '',
+    metadata: {}
   };
 
   handleChange = ({ error }) => {
@@ -128,7 +129,11 @@ class CheckoutForm extends Component {
           </div>
           {/*
           *metadata*
-          */}
+        */}
+        <div className='form-group'>
+          <label htmlFor='metadata' className='ccSection'> Amount </label>
+          <input type='number' className='ccField CardField StripeElement' placeholder='amount to donate' id='metadata.amount' onChange={this.handleInputChange}></input>
+        </div>
 
           <label>
             ~~~~~~~~~~~~~~~~ Card Details ~~~~~~~~~~~~~~~~
