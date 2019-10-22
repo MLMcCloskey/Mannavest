@@ -107,7 +107,7 @@ code {
 .card img {
   height: 150px;
   width: 180px;
-  margin: auto
+  margin: 14px auto 0;
 }
 
 .progressBar {

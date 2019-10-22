@@ -12,6 +12,7 @@ class Registry extends Component {
     // section: "about",
     userID: "",
     companyField: "",
+    companyName: "",
     aboutField: "",
     cards: [],
     supplies: [],
@@ -43,6 +44,7 @@ class Registry extends Component {
         this.setState({
           cards: res.data[0].cards,
           companyField: res.data[0].companyName,
+          companyName: res.data[0].companyName,
           aboutField: res.data[0].aboutUs
         })
       })
@@ -81,16 +83,20 @@ class Registry extends Component {
   createCompany = () => {
     console.log("creating company..");
     API.createCompany({
-      // category: "",
       cards: [],
       userID: this.state.userID,
       companyName: this.state.companyField,
       aboutUs: this.state.aboutField
-    })
+    });
+    this.getRegistry(this.props.userID);
   }
 
   updateCompanyName = () => {
-
+    console.log("updating company name");
+    API.updateName({ 
+      userID: this.state.userID,
+      companyName: this.state.companyField
+    })
   }
 
   updateComapnyInfo = () => {
@@ -110,8 +116,9 @@ class Registry extends Component {
         <h3> Build your own page to show your project to the world! </h3>
 
         <h4>Name: {this.state.companyField ? this.state.companyField : "Name"}</h4>
-        <input type="text" className="infoField" id="companyField" placeholder={this.state.companyField ? this.state.companyField : "The name of your company or project..."} onChange={this.handleFormInput} />
-        <button onClick={this.createCompany}>Create!</button>
+        {this.state.companyName ? <div><input type="text" className="infoField" id="companyField" placeholder={this.state.companyField ? this.state.companyField : "The name of your company or project..."} onChange={this.handleFormInput} />
+        <button onClick={this.updateCompanyName}>Update!</button></div> : <div><input type="text" className="infoField" id="companyField" placeholder={this.state.companyField ? this.state.companyField : "The name of your company or project..."} onChange={this.handleFormInput} />
+        <button onClick={this.createCompany}>Create!</button></div>}
 
         <h4>About Us</h4>
         <textarea type="text" className="infoField" id="aboutField" placeholder={this.state.aboutField ? this.state.aboutField : "Tell the world about your company or project..."} onChange={this.handleFormInput} />

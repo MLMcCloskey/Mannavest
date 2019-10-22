@@ -110,32 +110,43 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
-    getServices: (req, res) => {
-        let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
-        console.log(user);
+    updateName: (req, res) => {
+        console.log("updating their info...");
+        console.log (req.body)
         db.categories
-            .find({ userID: eval(user), category: "Services" })
+            .findOneAndUpdate({ userID: req.body.userID},
+              { $set: { companyName: req.body.companyName }
+            })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
 
-    getSupplies: (req, res) => {
-        let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
-        console.log(user);
-        console.log(req.body);
-        db.categories
-            .find({ userID: eval(user), category: "Supplies" })
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    },
+    // getServices: (req, res) => {
+    //     let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
+    //     console.log(user);
+    //     db.categories
+    //         .find({ userID: eval(user), category: "Services" })
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => res.status(422).json(err));
+    // },
 
-    getOther: (req, res) => {
-        let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
-        console.log(user);
-        db.categories
-            .find({ userID: eval(user), category: "Other" })
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    },
+    // getSupplies: (req, res) => {
+    //     let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
+    //     console.log(user);
+    //     console.log(req.body);
+    //     db.categories
+    //         .find({ userID: eval(user), category: "Supplies" })
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => res.status(422).json(err));
+    // },
+
+    // getOther: (req, res) => {
+    //     let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
+    //     console.log(user);
+    //     db.categories
+    //         .find({ userID: eval(user), category: "Other" })
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => res.status(422).json(err));
+    // },
 
 }
