@@ -1,6 +1,6 @@
 import React from 'react';
 import ListItem from './ListItem';
-import ActionButton from './CreateNew';
+// import ActionButton from './CreateNew';
 
 const List = (props) => {
     return (
@@ -16,12 +16,16 @@ const List = (props) => {
                         cost={card.cost}
                         progress={card.progress}
                         category={props.category}
+                        path={props.path}
                     />
                 )}
-            <ActionButton 
+            {/* <ActionButton 
                 listID={props.listID}
                 category={props.category}
-            />
+                companyName={props.companyName}
+                aboutUs={props.aboutUs}
+                userID={props.userID}
+            />  */}
         </div>
     )
 }

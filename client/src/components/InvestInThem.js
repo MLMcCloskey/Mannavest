@@ -1,51 +1,36 @@
 import React, { Component, useState } from 'react';
-import AboutUs from '../components/AboutUs';
-import ContributeSection from '../components/ContributeSection';
+import List from './List';
+import ActionButton from './CreateNew';
 import { connect } from 'react-redux';
 import API from '../utils/API';
 import { useAuth0 } from "../react-auth0-wrapper";
 
-class CompanyPage extends Component {
+class InvestInThem extends Component {
 
   state = {
     section: "about",
     userID: "",
-    aboutUs: "",
     categories: []
   }
   
   componentDidMount() {
     console.log(this.props);
-    // this.setState({userID: this.props.userID});
-    this.findCompany(this.props.match.params.companyName);
+    this.setState({userID: this.props.userID});
+    this.getRegistry();
   }
 
   componentWillReceiveProps() {
-    this.findCompany();
+    this.getRegistry();
   }
 
-  findCompany = (companyName) => {
-    API.findCompany(companyName)
+  getRegistry = () => {
+    API.getRegistry()
       .then(res => {
         this.setState({
           categories: res.data
         })
       })
       .catch(err => console.log(err));
-  }
-
-  renderCards = () => {
-    console.log("crazy idea");
-    return (
-      this.state.categories.map(list =>
-        <ContributeSection key={list._id}
-          listID={list._id}
-          category={list.category}
-          cards={list.cards} 
-          params={this.props.match.params}
-        />
-      )
-    )
   }
 
   render() {
@@ -55,20 +40,17 @@ class CompanyPage extends Component {
       <div className='registry'>
         <div className='innerNav'>
           <h5 className='innerNavigation'>About Us</h5>
-          <h5 className='innerNavigation' onClick={this.renderCards}>What We Need</h5>
-          <h5 className='innerNavigation'>What We Are Offering</h5>
+          <h5 className='innerNavigation'>What We Need</h5>
         </div>
 
-        {/* {(this.state.section === "about") ? <AboutUs /> : <ContributeSection props={this.state.categories} />} */}
         {this.state.categories.map(list =>
-          <ContributeSection key={list._id}
+          <List key={list._id}
             listID={list._id}
             category={list.category}
-            cards={list.cards}
-            path={this.props.match.path}
-          />          
+            cards={list.cards}>
+          </List>
         )}
-
+        <ActionButton list />
       </div>
     )
   }
@@ -108,4 +90,4 @@ const mapStateToProps = state => ({
   lists: state.lists
 })
 
-export default connect(mapStateToProps)(CompanyPage);
+export default connect(mapStateToProps)(InvestInThem);
