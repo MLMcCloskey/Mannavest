@@ -19,20 +19,14 @@ class Registry extends Component {
     other: []
   }
 
-  componentWillMount() {
+  componentDidMount() {
     console.log(this.props);
     this.setState({ userID: this.props.userID });
     this.getRegistry(this.props.userID);
-    // this.getServices(this.props.userID);
-    // this.getSupplies(this.props.userID);
-    // this.getOther(this.props.userID);
-    // this.getServices2();
-    // this.getCards();
   }
 
   componentWillReceiveProps() {
     this.getRegistry(this.props.userID);
-    // this.getServices2();
   }
 
   handleFormInput = (e) => {
@@ -57,106 +51,31 @@ class Registry extends Component {
 
   }
 
-  getServices2 = () => {
-    console.log("fetching services");
-    for (let i = 0; i < this.state.cards.length; i++) {
-      console.log("running teh loop");
-      if (this.state.cards[i].category == "Services") {
-        if (this.state.services.indexOf(this.state.cards[i]) < 0) {
-          this.state.services.push(this.state.cards[i]);
-          console.log("foudn somthing");
-          this.setState({ services: this.state.services })
-        }
-      }
-    };
-    this.setState({ services: this.state.services });
-  }
-
   getServices3 = () => {
-    console.log("im a crazy bastard");
+    console.log("filtering cards for Services section...");
     let servicios = this.state.cards.filter(service => service.category == "Services");
     console.log(servicios);
     this.setState({ services: servicios })
   }
 
-  getSupplies2 = () => {
-    console.log("fetching supplies");
-    for (let i = 0; i < this.state.cards.length; i++) {
-      console.log("running teh loop");
-      if (this.state.cards[i].category == "Supplies") {
-        if (this.state.supplies.indexOf(this.state.cards[i]) < 0) {
-        this.state.supplies.push(this.state.cards[i]);
-        console.log("foudn somthing");
-        this.setState({ services: this.state.services })
-        }
-      }
-    }
-    this.setState({ supplies: this.state.supplies });
+  getSupplies3 = () => {
+    console.log("filtering cards for Supplies section...");
+    let supplements = this.state.cards.filter(supply => supply.category == "Supplies");
+    console.log(supplements);
+    this.setState({ supplies: supplements })
   }
 
-  getOther2 = () => {
-    console.log("fetching other cards");
-    for (let i = 0; i < this.state.cards.length; i++) {
-      console.log("running teh loop");
-      if (this.state.cards[i].category == "Other") {
-        if (this.state.other.indexOf(this.state.cards[i]) < 0) {
-        this.state.other.push(this.state.cards[i]);
-        console.log("foudn somthing");
-        this.setState({ services: this.state.services })
-      }
-    }
-  }
-    this.setState({ other: this.state.other });
+  getOther3 = () => {
+    console.log("filtering cards for Other section...");
+    let things = this.state.cards.filter(thing => thing.category == "Other");
+    console.log(things);
+    this.setState({ other: things })
   }
 
   getCards = () => {
     this.getServices3();
     this.getSupplies3();
     this.getOther3();
-  }
-
-  getServices = (id) => {
-    // this.getServices2();
-    console.log("will this work?");
-    API.getServices(id)
-      .then(res => {
-        console.log(res.data);
-        this.setState({ services: res.data })
-      })
-      .then(console.log("atleast it ran"))
-      .catch(err => console.log(err));
-  }
-
-  getSupplies = (id) => {
-    API.getSupplies(id)
-      .then(res => {
-        console.log(res.data);
-        this.setState({ supplies: res.data })
-      })
-      .catch(err => console.log(err));
-  }
-
-  getSupplies3 = () => {
-    console.log("im a crazy bastard");
-    let supplements = this.state.cards.filter(supply => supply.category == "Supplies");
-    console.log(supplements);
-    this.setState({ supplies: supplements })
-  }
-
-  getOther = (id) => {
-    API.getOther(id)
-      .then(res => {
-        console.log(res.data);
-        this.setState({ other: res.data })
-      })
-      .catch(err => console.log(err));
-  }
-
-  getOther3 = () => {
-    console.log("im a crazy genius");
-    let things = this.state.cards.filter(thing => thing.category == "Other");
-    console.log(things);
-    this.setState({ other: things })
   }
 
   createCompany = () => {
@@ -203,7 +122,6 @@ class Registry extends Component {
             userID={this.props.userID}
             path={this.props.match.path}
           />
-          {/* )} */}
           <ActionButton
             category={"Services"}
             companyName={this.state.companyField}
@@ -226,7 +144,6 @@ class Registry extends Component {
             userID={this.props.userID}
             path={this.props.match.path}
           />
-          {/* )} */}
           <ActionButton
             category={"Supplies"}
             companyName={this.state.companyField}
@@ -248,7 +165,6 @@ class Registry extends Component {
             userID={this.props.userID}
             path={this.props.match.path}
           />
-          {/* )} */}
           <ActionButton
             category={"Other"}
             companyName={this.state.companyField}
@@ -257,48 +173,6 @@ class Registry extends Component {
           />
         </div>
 
-        {/*
-        <div className = "listName" >
-          <h2 className='listHeader'>Other</h2>
-          <hr />
-        {this.state.cards.map(list =>
-          <List 
-            key={list._id}
-            category={"Other"}
-            cards={(list.category === "Other") ? list.cards : []}
-            companyName={this.state.companyField}
-            aboutUs={this.state.aboutField}
-            userID={this.props.userID}
-            path={this.props.match.path}
-          />
-        )}
-        <ActionButton                 
-                category={"Other"}
-                companyName={this.state.companyField}
-                aboutUs={this.state.aboutField}
-                userID={this.state.userID}
-            /> 
-        </div> */}
-
-
-
-        {/* {this.state.cards.map(list =>
-          <List key={list._id}
-            listID={list._id}
-            category={list.category}
-            cards={list.cards}
-            companyName={this.state.companyField}
-            aboutUs={this.state.aboutField}
-            userID={this.props.userID}
-            path={this.props.match.path}
-          />
-        )} */}
-        {/* <ActionButton 
-          companyName={this.state.companyField}
-          aboutUs={this.state.aboutField}
-          userID={this.props.userID}
-          list
-        /> */}
       </div>
     )
   }
