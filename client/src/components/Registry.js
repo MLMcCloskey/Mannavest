@@ -72,6 +72,13 @@ class Registry extends Component {
     this.setState({ services: this.state.services });
   }
 
+  getServices3 = () => {
+    console.log("im a crazy bastard");
+    let servicios = this.state.cards.filter(service => service.category == "Services");
+    console.log(servicios);
+    this.setState({ services: servicios })
+  }
+
   getSupplies2 = () => {
     console.log("fetching supplies");
     for (let i = 0; i < this.state.cards.length; i++) {
@@ -103,9 +110,9 @@ class Registry extends Component {
   }
 
   getCards = () => {
-    this.getServices2();
-    this.getSupplies2();
-    this.getOther2();
+    this.getServices3();
+    this.getSupplies3();
+    this.getOther3();
   }
 
   getServices = (id) => {
@@ -129,6 +136,13 @@ class Registry extends Component {
       .catch(err => console.log(err));
   }
 
+  getSupplies3 = () => {
+    console.log("im a crazy bastard");
+    let supplements = this.state.cards.filter(supply => supply.category == "Supplies");
+    console.log(supplements);
+    this.setState({ supplies: supplements })
+  }
+
   getOther = (id) => {
     API.getOther(id)
       .then(res => {
@@ -136,6 +150,13 @@ class Registry extends Component {
         this.setState({ other: res.data })
       })
       .catch(err => console.log(err));
+  }
+
+  getOther3 = () => {
+    console.log("im a crazy genius");
+    let things = this.state.cards.filter(thing => thing.category == "Other");
+    console.log(things);
+    this.setState({ other: things })
   }
 
   createCompany = () => {
@@ -166,8 +187,8 @@ class Registry extends Component {
 
         <h4>Your Registry</h4>
         <h5>Create a list of things you will need</h5>
-
-        <button onClick={this.getCards}>Do it</button>
+        <p>Need help? Try looking for <a href='https://lmgtfy.com/?q=what+does+it+take+to+start+a+business&s=g' target='_blank'>suggestions</a></p>
+        {/* <button onClick={this.getCards}>Do it</button> */}
 
         <div className="listName" >
           {/* <h2 className='listHeader'>Services</h2>

@@ -13,7 +13,7 @@ class CompanyPage extends Component {
     userID: "",
     companyName: "",
     aboutUs: "",
-    categories: [],
+    cards: [],
     services: [],
     supplies: [],
     other: []
@@ -33,7 +33,7 @@ class CompanyPage extends Component {
     API.findCompany(companyName)
       .then(res => {
         this.setState({
-          categories: res.data[0].cards,
+          cards: res.data[0].cards,
           companyName: res.data[0].companyName,
           aboutUs: res.data[0].aboutUs
         })
@@ -42,28 +42,27 @@ class CompanyPage extends Component {
       // .then(() => { return (this.getServices3()) })
       // .then(() => { return (this.getSupplies3()) })
       // .then(() => { return (this.getOther3()) })
-      .then(() => { return (this.categorize()) })
-      // .then(() => this.state.categories.filter(cards => this.state.categories.cards.category === "Services" ? this.setState({services: cards}) : console.log("ooooo")))
+      .then(() => { return ( this.categorize()) })
       .catch(err => console.log(err));
   }
 
   getServices3 = () => {
     console.log("im a crazy bastard");
-    let servicios = this.state.categories.filter(service => service.category == "Services");
+    let servicios = this.state.cards.filter(service => service.category == "Services");
     console.log(servicios);
     this.setState({ services: servicios })
   }
 
   getSupplies3 = () => {
     console.log("im a crazy bastard");
-    let supplements = this.state.categories.filter(supply => supply.category == "Supplies");
+    let supplements = this.state.cards.filter(supply => supply.category == "Supplies");
     console.log(supplements);
     this.setState({ supplies: supplements })
   }
 
   getOther3 = () => {
     console.log("im a crazy genius");
-    let things = this.state.categories.filter(thing => thing.category == "Other");
+    let things = this.state.cards.filter(thing => thing.category == "Other");
     console.log(things);
     this.setState({ other: things })
   }
@@ -103,7 +102,7 @@ class CompanyPage extends Component {
           {/* <p>{this.state.aboutUs}</p> */}
           {this.state.section === 'about' ? <About about={this.state.aboutUs} /> : <p />}
 
-          {/* {this.state.categories.map(list =>
+          {/* {this.state.cards.map(list =>
             this.state.section === 'contribute' ? <ContributeSection key={list._id}
               listID={list._id}
               category={list.category}
