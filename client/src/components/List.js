@@ -19,13 +19,13 @@ const List = (props) => {
                         path={props.path}
                     />
                 )}
-            <ActionButton 
+            {/* <ActionButton 
                 listID={props.listID}
                 category={props.category}
                 companyName={props.companyName}
                 aboutUs={props.aboutUs}
                 userID={props.userID}
-            /> 
+            />  */}
         </div>
     )
 }

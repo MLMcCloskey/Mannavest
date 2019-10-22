@@ -11,7 +11,7 @@ class ActionButton extends React.Component {
         description: "",
         cost: 0,
         image: "",
-        category: "",
+        category: this.props.category,
         companyName: "",
         aboutUs: "",
         userID: this.props.userID
@@ -53,7 +53,7 @@ class ActionButton extends React.Component {
         else return;
 
         API.createCategory({
-            category: this.state.category,
+            category: this.props.category,
             cards: [],
             userID: this.state.userID,
             companyName: this.state.companyName,
@@ -68,16 +68,16 @@ class ActionButton extends React.Component {
         e.preventDefault();
         const { dispatch, listID } = this.props;
         const { title, description, cost, image } = this.state;
-        console.log(`props: ${this.props}`);
-        console.log(`state: ${this.state}`);
-        console.log(this.parentNode);
+        // console.log(`props: ${this.props}`);
+        // console.log(`state: ${this.state}`);
+        // console.log(this.parentNode);
         if (title, description, cost, image) {
             dispatch(addCard(listID, title, description, cost, image))
         }
         else return;
 
         API.addCard({ 
-            id: this.props.listID,
+            // id: this.props.listID,
             card: this.state,
             category: this.props.category
         })

@@ -8,8 +8,20 @@ const app = require('express');
 router.route('/getRegistry')
     .post(cardController.getRegistry)
 
+router.route('/getServices')
+    .post(cardController.getServices)
+
+router.route('/getSupplies')
+    .post(cardController.getSupplies)
+
+router.route('/getOther')
+    .post(cardController.getOther)
+
 router.route('/createCategory')
     .post(cardController.create);
+
+router.route('/createCompany')
+    .post(cardController.createCompany);
 
 router.route('/addCard')
     .post(cardController.addCard)

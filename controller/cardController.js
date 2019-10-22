@@ -12,10 +12,10 @@ module.exports = {
 
     addCard: (req, res) => {
         console.log("adding card to registry");
-        console.log(req.body.card);
         console.log(req.body);
+        // console.log(req.body);
         db.categories
-            .updateOne({ category: req.body.category },
+            .updateOne({ userID: req.body.card.userID },
                 {
                     $push: {
                         cards: [{
@@ -24,6 +24,7 @@ module.exports = {
                             cost: req.body.card.cost,
                             image: req.body.card.image,
                             progress: 0,
+                            category: req.body.category
                         }]
                     }
                 }
@@ -87,6 +88,44 @@ module.exports = {
         } catch (err) {
           res.status(500).end();
         }      
-    }
+    },
+
+
+    createCompany: (req, res) => {
+        console.log("Creating new company...");
+        console.log(req.body);
+        db.categories
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    getServices: (req, res) => {
+        let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
+        console.log(user);
+        db.categories
+            .find({ userID: eval(user), category: "Services" })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    getSupplies: (req, res) => {
+        let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
+        console.log(user);
+        console.log(req.body);
+        db.categories
+            .find({ userID: eval(user), category: "Supplies" })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    getOther: (req, res) => {
+        let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
+        console.log(user);
+        db.categories
+            .find({ userID: eval(user), category: "Other" })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
 
 }

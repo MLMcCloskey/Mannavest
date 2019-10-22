@@ -5,21 +5,21 @@ import { useAuth0 } from '../react-auth0-wrapper';
 const Contribute = (props) => {
     const { user } = useAuth0;
     return (
-        <div className="listName">
-            <h2 className='listHeader'>{props.category}</h2>
-            <hr />
-                { props.cards.map(card =>                
+        <div className="beepBoop">
+            {/* <h2 className='listHeader'>{props.category}</h2>
+            <hr /> */}
+                {/* {/* { props.map(card =>                 */}
                     <ListItem 
-                        key={card.title}
-                        title={card.title}
-                        description={card.description}
-                        image={card.image}
-                        cost={card.cost}
-                        progress={card.progress}
+                        key={props.cards.title}
+                        title={props.cards.title}
+                        description={props.cards.description}
+                        image={props.cards.image}
+                        cost={props.cards.cost}
+                        progress={props.cards.progress}
                         category={props.category}
                         path={props.path}
                     />
-                )}
+                {/* )} */ }
         </div>
     )
 }

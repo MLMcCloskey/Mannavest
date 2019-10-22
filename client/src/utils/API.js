@@ -37,5 +37,27 @@ export default {
   chargeIt: (data) => {
     console.log("using custom processor...")
     return axios.post('/api/cardRoutes/chargeIt', data);
+  },
+
+
+  createCompany: (data) => {
+    console.log(data)
+    console.log("Creating new company for user with ID " + data.userID);
+    return axios.post('/api/cardRoutes/createCompany', data);
+  },
+
+  getServices: data => {
+    console.log("gathering list of services...");
+    return axios.post('/api/cardRoutes/getServices', data);
+  },
+
+  getSupplies: data => {
+    console.log("gathering list of Supplies...");
+    return axios.post('/api/cardRoutes/getSupplies', data);
+  },
+
+  getOther: data => {
+    console.log("gathering list of Other...");
+    return axios.post('/api/cardRoutes/getOther', data);
   }
 }
