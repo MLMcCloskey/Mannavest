@@ -1,9 +1,9 @@
 import React from 'react';
 import ListItem from './ListItem';
-import { useAuth0 } from '../react-auth0-wrapper';
+// import { useAuth0 } from '../react-auth0-wrapper';
 
 const Contribute = (props) => {
-    const { user } = useAuth0;
+    // const { user } = useAuth0;
     return (
         <div className="beepBoop">
             {/* <h2 className='listHeader'>{props.category}</h2>

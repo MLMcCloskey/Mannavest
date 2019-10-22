@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PrivateRoute from "./components/PrivateRoute";
 import Header from './components/Header';
 // import Navbar from './components/NavBar';
@@ -9,7 +9,7 @@ import AboutUs from './components/AboutUs';
 // import ActionButton from './components/CreateNew';
 import Registry from './components/Registry';
 import Loading from './components/Loading';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import { useAuth0 } from "./react-auth0-wrapper";
@@ -20,7 +20,7 @@ import StripeTest from './components/StripeTest';
 const App = () => {
 
   // const { lists } = this.props;
-  const { isAuthenticated, loginWithRedirect, logout, user, loading } = useAuth0();
+  const { isAuthenticated, /*loginWithRedirect, logout,*/ user, loading } = useAuth0();
 
   if (loading) {
     return (

@@ -116,7 +116,7 @@ class CompanyPage extends Component {
               <h2 className='listHeader'>Services</h2>
               <hr />
               {this.state.services.map(list =>
-                this.state.section === 'contribute' ? <ListItem key={list._id}
+                this.state.section === 'contribute' ? <ListItem key={list.title}
                   title={list.title}
                   description={list.description}
                   image={list.image}
@@ -132,7 +132,7 @@ class CompanyPage extends Component {
               <h2 className='listHeader'>Supplies</h2>
               <hr />
               {this.state.supplies.map(list =>
-                this.state.section === 'contribute' ? <ListItem key={list._id}
+                this.state.section === 'contribute' ? <ListItem key={list.title}
                 title={list.title}
                 description={list.description}
                 image={list.image}
@@ -148,7 +148,7 @@ class CompanyPage extends Component {
               <h2 className='listHeader'>Other</h2>
               <hr />
               {this.state.other.map(list =>
-                this.state.section === 'contribute' ? <ListItem key={list._id}
+                this.state.section === 'contribute' ? <ListItem key={list.title}
                 title={list.title}
                 description={list.description}
                 image={list.image}
