@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { addList, addCard } from '../actions';
+import { /*addList,*/ addCard } from '../actions';
 import API from '../utils/API';
 
 
@@ -45,12 +45,12 @@ class ActionButton extends React.Component {
 
     handleAddList = (e) => {
         e.preventDefault();
-        const { dispatch } = this.props;
-        const { category, companyName, userID, aboutUs } = this.state;
-        if (category) {
-            dispatch(addList(category))
-        }
-        else return;
+        // const { dispatch } = this.props;
+        // const { category, companyName, userID, aboutUs } = this.state;
+        // if (category) {
+        //     dispatch(addList(category))
+        // }
+        // else return;
 
         API.createCategory({
             category: this.props.category,

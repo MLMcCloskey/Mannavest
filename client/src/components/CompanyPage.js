@@ -1,10 +1,10 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import About from './About';
-import ContributeSection from './ContributeSection';
+// import ContributeSection from './ContributeSection';
 import ListItem from './ListItem';
 import { connect } from 'react-redux';
 import API from '../utils/API';
-import { useAuth0 } from "../react-auth0-wrapper";
+// import { useAuth0 } from "../react-auth0-wrapper";
 
 class CompanyPage extends Component {
 
@@ -48,21 +48,21 @@ class CompanyPage extends Component {
 
   getServices3 = () => {
     console.log("im a crazy bastard");
-    let servicios = this.state.cards.filter(service => service.category == "Services");
+    let servicios = this.state.cards.filter(service => service.category === "Services");
     console.log(servicios);
     this.setState({ services: servicios })
   }
 
   getSupplies3 = () => {
     console.log("im a crazy bastard");
-    let supplements = this.state.cards.filter(supply => supply.category == "Supplies");
+    let supplements = this.state.cards.filter(supply => supply.category === "Supplies");
     console.log(supplements);
     this.setState({ supplies: supplements })
   }
 
   getOther3 = () => {
     console.log("im a crazy genius");
-    let things = this.state.cards.filter(thing => thing.category == "Other");
+    let things = this.state.cards.filter(thing => thing.category === "Other");
     console.log(things);
     this.setState({ other: things })
   }
@@ -83,7 +83,7 @@ class CompanyPage extends Component {
 
   render() {
     // const { loading, user } = useAuth0();
-    const { lists } = this.props;
+    // const { lists } = this.props;
 
     return (
       <div className='registry'>

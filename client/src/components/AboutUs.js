@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { useAuth0 } from "../react-auth0-wrapper";
+import React from 'react';
+// import { useAuth0 } from "../react-auth0-wrapper";
 
 const AboutUs = (props) => {
   // const { loading, user } = useAuth0();

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useAuth0 } from "../react-auth0-wrapper";
-import API from '../utils/API';
+// import API from '../utils/API';
 
 
 // class Navbar extends React.Component {
@@ -22,7 +22,7 @@ import API from '../utils/API';
 // render() {
 
 const Navbar = () => {
-  const { isAuthenticated, loginWithRedirect, logout, user, loading } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, /*user, loading*/ } = useAuth0();
 
   // if (loading || !user) {
   //   return (
