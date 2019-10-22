@@ -85,7 +85,19 @@ class Registry extends Component {
       cards: [],
       userID: this.state.userID,
       companyName: this.state.companyField,
-      aboutUs: this.state.aboutUs
+      aboutUs: this.state.aboutField
+    })
+  }
+
+  updateCompanyName = () => {
+
+  }
+
+  updateComapnyInfo = () => {
+    console.log("updating company info");
+    API.updateInfo({ 
+      userID: this.state.userID,
+      aboutUs: this.state.aboutField
     })
   }
 
@@ -103,6 +115,7 @@ class Registry extends Component {
 
         <h4>About Us</h4>
         <textarea type="text" className="infoField" id="aboutField" placeholder={this.state.aboutField ? this.state.aboutField : "Tell the world about your company or project..."} onChange={this.handleFormInput} />
+        <button onClick={this.updateComapnyInfo}>Update!</button>
 
         <h4>Your Registry</h4>
         <h5>Create a list of things you will need</h5>

@@ -90,12 +90,22 @@ module.exports = {
         }      
     },
 
-
     createCompany: (req, res) => {
         console.log("Creating new company...");
         console.log(req.body);
         db.categories
             .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    updateInfo: (req, res) => {
+        console.log("updating their info...");
+        console.log (req.body)
+        db.categories
+            .findOneAndUpdate({ userID: req.body.userID},
+              { $set: { aboutUs: req.body.aboutUs }
+            })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },

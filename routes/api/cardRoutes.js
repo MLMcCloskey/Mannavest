@@ -32,6 +32,8 @@ router.route('/findCompany')
 router.route('/findAllCompanies')
     .post(cardController.findAllCompanies)
 
+router.route('/updateInfo')
+    .put(cardController.updateInfo)
 
 
 // app.post("/charge", async (req, res) => {

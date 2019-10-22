@@ -59,5 +59,11 @@ export default {
   getOther: data => {
     console.log("gathering list of Other...");
     return axios.post('/api/cardRoutes/getOther', data);
+  },
+
+  updateInfo: data => {
+    console.log("Updating company with new info");
+    console.log(data);
+    return axios.put('/api/cardRoutes/updateInfo', data);
   }
 }
