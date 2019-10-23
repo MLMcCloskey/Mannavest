@@ -32,5 +32,44 @@ export default {
   test: () => {
     console.log("something is happening");
     return axios.get('/api/cardRoutes/');
+  },
+
+  chargeIt: (data) => {
+    console.log("using custom processor...")
+    return axios.post('/api/cardRoutes/chargeIt', data);
+  },
+
+
+  createCompany: (data) => {
+    console.log(data)
+    console.log("Creating new company for user with ID " + data.userID);
+    return axios.post('/api/cardRoutes/createCompany', data);
+  },
+
+  // getServices: data => {
+  //   console.log("gathering list of services...");
+  //   return axios.post('/api/cardRoutes/getServices', data);
+  // },
+
+  // getSupplies: data => {
+  //   console.log("gathering list of Supplies...");
+  //   return axios.post('/api/cardRoutes/getSupplies', data);
+  // },
+
+  // getOther: data => {
+  //   console.log("gathering list of Other...");
+  //   return axios.post('/api/cardRoutes/getOther', data);
+  // },
+
+  updateInfo: data => {
+    console.log("Updating company with new info");
+    console.log(data);
+    return axios.put('/api/cardRoutes/updateInfo', data);
+  },
+
+  updateName: data => {
+    console.log("Updating company with new name");
+    console.log(data);
+    return axios.put('/api/cardRoutes/updateName', data);
   }
 }

@@ -1,4 +1,5 @@
 const db = require('../models');
+const stripe = require("stripe")("sk_test_6o7OKH2L9Fj4rmH7u0z4fBVH001CyHRvbi");
 
 module.exports = {
     create: function (req, res) {
@@ -11,10 +12,10 @@ module.exports = {
 
     addCard: (req, res) => {
         console.log("adding card to registry");
-        console.log(req.body.card);
         console.log(req.body);
+        // console.log(req.body);
         db.categories
-            .updateOne({ category: req.body.category },
+            .updateOne({ userID: req.body.card.userID },
                 {
                     $push: {
                         cards: [{
@@ -23,6 +24,7 @@ module.exports = {
                             cost: req.body.card.cost,
                             image: req.body.card.image,
                             progress: 0,
+                            category: req.body.category
                         }]
                     }
                 }
@@ -52,6 +54,7 @@ module.exports = {
         console.log("loading list of companies...");
         db.categories
             .find({})
+            .sort({companyName: 1})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -64,15 +67,93 @@ module.exports = {
             // .sort({ name: -1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
+<<<<<<< HEAD
     }
    
 
 
     
+=======
+    },
+>>>>>>> c01e87c4061cef6c2cd8a7f1da020fc8bd7c58bb
     // test: (req, res) => {
     //     console.log("you can do this")
     //     res.send("../public/index.html");
     // }
 
+    chargeIt: async (req, res) => {
+    // app.post("/charge", async (req, res) => {
+        try {
+          let {status} = await stripe.charges.create({
+            amount: 2000,
+            currency: "usd",
+            description: "An example charge",
+            source: req.body
+          });
+      
+          res.json({status});
+        } catch (err) {
+          res.status(500).end();
+        }      
+    },
+
+    createCompany: (req, res) => {
+        console.log("Creating new company...");
+        console.log(req.body);
+        db.categories
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    updateInfo: (req, res) => {
+        console.log("updating their info...");
+        console.log (req.body)
+        db.categories
+            .findOneAndUpdate({ userID: req.body.userID},
+              { $set: { aboutUs: req.body.aboutUs }
+            })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    updateName: (req, res) => {
+        console.log("updating their info...");
+        console.log (req.body)
+        db.categories
+            .findOneAndUpdate({ userID: req.body.userID},
+              { $set: { companyName: req.body.companyName }
+            })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    // getServices: (req, res) => {
+    //     let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
+    //     console.log(user);
+    //     db.categories
+    //         .find({ userID: eval(user), category: "Services" })
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => res.status(422).json(err));
+    // },
+
+    // getSupplies: (req, res) => {
+    //     let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
+    //     console.log(user);
+    //     console.log(req.body);
+    //     db.categories
+    //         .find({ userID: eval(user), category: "Supplies" })
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => res.status(422).json(err));
+    // },
+
+    // getOther: (req, res) => {
+    //     let user = (JSON.stringify(req.body).substring(1).split(":")[0]);
+    //     console.log(user);
+    //     db.categories
+    //         .find({ userID: eval(user), category: "Other" })
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => res.status(422).json(err));
+    // },
 
 }

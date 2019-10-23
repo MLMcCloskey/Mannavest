@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useAuth0 } from "../react-auth0-wrapper";
-import API from '../utils/API';
+// import API from '../utils/API';
 
 
 // class Navbar extends React.Component {
@@ -22,7 +22,7 @@ import API from '../utils/API';
 // render() {
 
 const Navbar = () => {
-  const { isAuthenticated, loginWithRedirect, logout, user, loading } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, /*user, loading*/ } = useAuth0();
 
   // if (loading || !user) {
   //   return (
@@ -46,18 +46,21 @@ const Navbar = () => {
               <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="about">About Us</a>
+              <a className="nav-link" href="/about">About Us</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="companies">Contribute</a>
+              <a className="nav-link" href="/companies">Contribute</a>
             </li>
           </ul>
           {/* <li className="nav-item"> */}
-          <a className="nav-link my-page" href="registry">My Page</a>
+
+          <h1 className='title'>MANAVEST</h1>
+
+          <a className="nav-link my-page" href="/registry">My Page</a>
           {/* </li> */}
           <form className="form-inline my-2 my-lg-0">
             <input className="form-control mr-sm-2 searchBar" type="search" placeholder="Search for companies..." aria-label="Search" />
-            <button className="btn btn-warning btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button className="btn btn-warning btn-outline-success my-2 my-sm-0 searchButton" type="submit"><i className="fa fa-search" /></button>            
           </form>
 
           {!isAuthenticated && (

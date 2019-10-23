@@ -41,9 +41,29 @@ if (process.env.NODE_ENV === "production") {
 
 Promise = mongoose.Promise;
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-  }
+
+// Stripe configuration 
+const stripe = require("stripe")(process.env.rayo2);
+app.post("/charge", async (req, res) => {
+    console.log('running from server...')
+    try {
+      let {status} = await stripe.charges.create({
+        amount: 2000,
+        currency: "usd",
+        description: "An example charge",
+        source: req.body
+      });
+  
+      console.log("did we do it?");
+      console.log(status);
+
+      res.json({status});
+    } catch (err) {
+      res.status(500).end();
+    }
+  });
+
+
 
 // connect to database (local or production)
 // mongoose.set('useFindAndModify', false);

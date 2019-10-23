@@ -4,12 +4,17 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "engines": {
+<<<<<<< HEAD
     "node": "10.15.3"
+=======
+    "node": "10.14.2"
+>>>>>>> c01e87c4061cef6c2cd8a7f1da020fc8bd7c58bb
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.0.2",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
+<<<<<<< HEAD
     "concurrently": "^3.6.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.0",
@@ -21,6 +26,28 @@
     "postinstall": "cd client && yarn install && yarn run build",
     "start": "if-env NODE_ENV=production && yarn run start:prod && cd client || yarn run start:dev",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn run client\"",
+=======
+    "dotenv": "^8.0.0",
+    "concurrently": "^4.1.1",
+    "express": "^4.17.0",
+    "if-env": "^1.0.4",
+    "mongoose": "^5.6.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "^3.0.1",
+    "react-stripe-elements": "^5.0.0",
+    "redux": "^4.0.4",
+    "stripe": "^7.8.0"
+  },
+  "scripts": {
+    "start": "if-env NODE_ENV=production && yarn start:prod && cd client || yarn start:dev",
+    "client": "cd client && yarn start",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn client\"",
+    "start:prod": "node server.js",
+>>>>>>> c01e87c4061cef6c2cd8a7f1da020fc8bd7c58bb
     "build": "cd client && yarn build",
     "client": "cd client && yarn run start",
     "start:prod": "node server.js",

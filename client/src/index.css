@@ -46,16 +46,29 @@ code {
   border-right: 1px solid white;
 }
 .searchBar {
-  margin-left: 20px
+  margin-left: 20px;
+}
+
+.nav-item {
+  padding: 0 10px;
 }
 
 .innerNavigation {
   display: inline-block;
-  padding: 20px 20px 0
+  margin: 20px 20px 0;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
+.title {
+  color: white;
+  margin: 0 auto;
+}
 
-
+.searchButton {
+  margin-left:-10px;
+  margin-right: 10px
+}
 
 /*************************   Registry Page     ***********************/
 .infoField {
@@ -88,12 +101,13 @@ code {
   height: 420px;
   margin: 20px;
   padding: 10px;
-  display: inline-block;
+  display: inline-flex;
 }
 
 .card img {
   height: 150px;
-  width: 180px
+  width: 180px;
+  margin: 14px auto 0;
 }
 
 .progressBar {
@@ -131,5 +145,33 @@ code {
 .companyName {
   text-align: left;
   border-bottom: 1px solid black;
-  padding: 10px 6vw;
+  padding: 10px;
+  display: block;
+  width: 80vw;
+  margin: 0 auto;
+  background-color: beige;
+}
+
+
+
+/* *****************  Credit card form ******************* */
+.ccForm {
+  border: 2px solid black;
+  margin: 15px auto;
+  padding: 5px;
+  max-width: 500px;
+  text-align: left;
+  /* display: block; */
+}
+
+.ccField {
+  border: 1px solid grey;
+  padding: 2px;
+  margin: 5px 10px auto;
+  display: block;
+  width: 90%;
+}
+
+.ccSection {
+  
 }
