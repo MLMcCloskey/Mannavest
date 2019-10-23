@@ -67,15 +67,7 @@ module.exports = {
             // .sort({ name: -1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
-<<<<<<< HEAD
-    }
-   
-
-
-    
-=======
     },
->>>>>>> c01e87c4061cef6c2cd8a7f1da020fc8bd7c58bb
     // test: (req, res) => {
     //     console.log("you can do this")
     //     res.send("../public/index.html");
