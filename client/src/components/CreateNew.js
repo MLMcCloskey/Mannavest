@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { addList, addCard } from '../actions';
+import { /*addList,*/ addCard } from '../actions';
 import API from '../utils/API';
 
 
@@ -11,8 +11,21 @@ class ActionButton extends React.Component {
         description: "",
         cost: 0,
         image: "",
-        category: ""
+        category: this.props.category,
+        companyName: "",
+        aboutUs: "",
+        userID: this.props.userID
     }
+
+    // Lifecycle events ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    componentWillReceiveProps() {
+        this.setState({
+            companyName: this.props.companyName,
+            aboutUs: this.props.aboutUs,
+            userID: this.props.userID
+        });
+      }
+
 
     // methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     openForm = (e) => {
@@ -32,16 +45,19 @@ class ActionButton extends React.Component {
 
     handleAddList = (e) => {
         e.preventDefault();
-        const { dispatch } = this.props;
-        const { category } = this.state;
-        if (category) {
-            dispatch(addList(category))
-        }
-        else return;
+        // const { dispatch } = this.props;
+        // const { category, companyName, userID, aboutUs } = this.state;
+        // if (category) {
+        //     dispatch(addList(category))
+        // }
+        // else return;
 
         API.createCategory({
-            category: this.state.category,
-            cards: []
+            category: this.props.category,
+            cards: [],
+            userID: this.state.userID,
+            companyName: this.state.companyName,
+            aboutUs: this.state.aboutUs
         })
         .catch(err => console.log(err));
 
@@ -52,16 +68,16 @@ class ActionButton extends React.Component {
         e.preventDefault();
         const { dispatch, listID } = this.props;
         const { title, description, cost, image } = this.state;
-        console.log(`props: ${this.props}`);
-        console.log(`state: ${this.state}`);
-        console.log(this.parentNode);
+        // console.log(`props: ${this.props}`);
+        // console.log(`state: ${this.state}`);
+        // console.log(this.parentNode);
         if (title, description, cost, image) {
             dispatch(addCard(listID, title, description, cost, image))
         }
         else return;
 
         API.addCard({ 
-            id: this.props.listID,
+            // id: this.props.listID,
             card: this.state,
             category: this.props.category
         })
@@ -108,7 +124,7 @@ class ActionButton extends React.Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="image">Image</label>
-                    <input type="text" className="form-control" id="image" placeholder="Choose an image for the card" onChange={this.handleInputChange} />
+                    <input type="text" className="form-control" id="image" placeholder="Choose an image for the card or paste an img URL" onChange={this.handleInputChange} />
                 </div>
                 <button type="submit" className="btn btn-secondary form-buttons" onClick={this.closeForm}>Cancel</button>
                 <button type="submit" className="btn btn-primary form-buttons" onMouseDown={this.handleAddCard}>Submit</button>

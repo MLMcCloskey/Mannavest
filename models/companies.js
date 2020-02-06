@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-var categoriesScheme = new Schema({    
+var comapaniesScheme = new Schema({    
     userID: {
       type: String,
       trim: false,
@@ -20,7 +20,7 @@ var categoriesScheme = new Schema({
         type: String,
         trim: false,
         // required: true
-        // default: "Woopie"
+        default: "Woopie"
     },
     cards: {
       type: Array,
@@ -28,6 +28,6 @@ var categoriesScheme = new Schema({
 })
 
 
-const categories = mongoose.model('categories', categoriesScheme);
+const comapanies = mongoose.model('comapanies', comapaniesScheme);
 
-module.exports = categories;
+module.exports = comapanies;

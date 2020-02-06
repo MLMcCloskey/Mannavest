@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cardRoutes = require('./routes');
-require('dotenv').config();
-
+const dotenv = require('dotenv');
+dotenv.config();
 
 // port variable (local or production)
 const PORT = process.env.PORT || 3001;
@@ -33,22 +33,54 @@ app.use(allowCrossDomain);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cardRoutes);
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+    console.log("writing code is hard");
+    app.use(express.static("client/build"));
+
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
+    });
+  }
+
 Promise = mongoose.Promise;
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-  }
+
+// Stripe configuration 
+const stripe = require("stripe")(process.env.rayo2);
+app.post("/charge", async (req, res) => {
+    console.log('running from server...')
+    try {
+      let {status} = await stripe.charges.create({
+        amount: 2000,
+        currency: "usd",
+        description: "An example charge",
+        source: req.body
+      });
+  
+      console.log("did we do it?");
+      console.log(status);
+
+      res.json({status});
+    } catch (err) {
+      res.status(500).end();
+    }
+  });
+
+
 
 // connect to database (local or production)
 // mongoose.set('useFindAndModify', false);
-// mongoose.connect("mongodb://bruder44:AgentRooney10!@ds261486.mlab.com:61486/mannavest", {useNewUrlParser: true}, err => {
-const MONGODB_URI = process.env.MONGODB_URI;
-console.log(MONGODB_URI);
-// || "mongodb://localhost:27017/mannavest";
-mongoose.connect(MONGODB_URI, {useNewUrlParser: true}, err => {
-if (err) console.error(err);
-else console.log(`Database Connected!!!`);
+// mongoose.connect("mongodb://bruder44:AgentRooney10@ds261486.mlab.com:61486/mannavest", {useNewUrlParser: true}, err => {
+const MONGODB_URI = 
+   // process.env.MONGODB_URI || 
+    "mongodb://localhost:27017/mannavest";
+console.log("this the uri " + MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, err => {
+    if (err) console.error(err);
+    else console.log(`Database Connected!!!`);
 });
+
 // routes or import from route module
 
 // connect to server (local or production)
