@@ -35,8 +35,12 @@ app.use(bodyParser.json());
 app.use(cardRoutes);
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-    console.log("writing code sucks");
+    console.log("writing code is hard");
     app.use(express.static("client/build"));
+
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
+    });
   }
 
 Promise = mongoose.Promise;
